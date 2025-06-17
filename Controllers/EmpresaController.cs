@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto;
+using Contratos.Data.Dto.EmpresaDto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
 

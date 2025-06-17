@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contratos.Data.Dto;
+using Contratos.Data.Dto.EmpresaDto;
 using Contratos.Model;
 
 namespace Contratos.Profiles;

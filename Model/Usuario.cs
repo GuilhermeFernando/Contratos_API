@@ -10,6 +10,8 @@ public class Usuario
     [Required]
     [StringLength(100, ErrorMessage = "O nome de usuário deve ter no máximo 100 caracteres.")]
     public string NomeUsuario { get; set; }
-    public ICollection<Empresa> Empresas { get; set; } = new List<Empresa>();
+    [Required]
+    public int EmpresaId { get; set; }
+    public virtual Empresa Empresa { get; set; }
 
 }

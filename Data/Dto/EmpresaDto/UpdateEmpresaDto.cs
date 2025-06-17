@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto;
+namespace Contratos.Data.Dto.EmpresaDto;
 
 public class UpdateEmpresaDto
 {
