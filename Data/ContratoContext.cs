@@ -12,7 +12,7 @@ public class ContratoContext : DbContext
     public DbSet<Empresa> Empresas { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
-
+    public DbSet<Tenant> Tenants { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,7 +24,7 @@ public class ContratoContext : DbContext
 
         modelBuilder.Entity<Empresa>()
             .HasOne(e => e.Usuario)
-            .WithOne(u => u.Empresa)
+            .WithOne(u => u.Empresas)
             .HasForeignKey<Empresa>(e => e.UsuarioId)
             .OnDelete(DeleteBehavior.Restrict);
 

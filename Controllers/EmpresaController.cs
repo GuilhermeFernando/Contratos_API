@@ -33,13 +33,14 @@ public class EmpresaController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaEndereco(int id, [FromBody] UpdateEmpresaDto updateEmpresaDto)
+    public IActionResult AtualizaEmpresa(int id, [FromBody] UpdateEmpresaDto updateEmpresaDto)
     {
-        var end = _context.Enderecos.FirstOrDefault(ender => ender.EnderecoId == id);
-        if (end == null) return NotFound();
-        _mapper.Map(updateEmpresaDto, end);
+        var emp = _context.Empresas.FirstOrDefault(empresa => empresa.EmpresaId == id);
+        if (emp == null) return NotFound();
+        _mapper.Map(updateEmpresaDto, emp);
         _context.SaveChanges();
         return NoContent();
     }
+
 
 }

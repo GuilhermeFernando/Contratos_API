@@ -3,36 +3,28 @@
   "WorkspaceRootPath": "E:\\Contratos_API\\Contratos\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\tenantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\tenantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\dto\\tenantdto\\readtenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\dto\\tenantdto\\readtenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\dto\\tenantdto\\createtenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\dto\\tenantdto\\createtenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\dto\\updateempresadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\dto\\updateempresadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\dto\\tenantdto\\updatetenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\dto\\tenantdto\\updatetenantdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\profiles\\empresaprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:profiles\\empresaprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\model\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\model\\endereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\endereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\model\\tenant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\tenant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,109 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmpresaController.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Controllers\\EmpresaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EmpresaController.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Controllers\\EmpresaController.cs",
-              "RelativeToolTip": "Controllers\\EmpresaController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAArwBcAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:13:46.594Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UpdateEmpresaDto.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\Dto\\UpdateEmpresaDto.cs",
-              "RelativeDocumentMoniker": "Data\\Dto\\UpdateEmpresaDto.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\Dto\\UpdateEmpresaDto.cs",
-              "RelativeToolTip": "Data\\Dto\\UpdateEmpresaDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Title": "ReadTenantDto.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\ReadTenantDto.cs",
+              "RelativeDocumentMoniker": "Data\\Dto\\TenantDto\\ReadTenantDto.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\ReadTenantDto.cs",
+              "RelativeToolTip": "Data\\Dto\\TenantDto\\ReadTenantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:09:19.198Z",
+              "WhenOpened": "2025-06-18T02:41:13.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EmpresaProfile.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Profiles\\EmpresaProfile.cs",
-              "RelativeDocumentMoniker": "Profiles\\EmpresaProfile.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Profiles\\EmpresaProfile.cs",
-              "RelativeToolTip": "Profiles\\EmpresaProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAACRAAAAAAAAAA==",
+              "Title": "EmpresaController.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Controllers\\EmpresaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmpresaController.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Controllers\\EmpresaController.cs",
+              "RelativeToolTip": "Controllers\\EmpresaController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAUwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T02:06:14.442Z",
+              "WhenOpened": "2025-06-18T02:26:50.682Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Model\\Usuario.cs",
-              "RelativeDocumentMoniker": "Model\\Usuario.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Model\\Usuario.cs",
-              "RelativeToolTip": "Model\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABNAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "TenantController.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Controllers\\TenantController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TenantController.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Controllers\\TenantController.cs",
+              "RelativeToolTip": "Controllers\\TenantController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAcwEAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T00:50:51.518Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ContratoContext.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\ContratoContext.cs",
-              "RelativeDocumentMoniker": "Data\\ContratoContext.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\ContratoContext.cs",
-              "RelativeToolTip": "Data\\ContratoContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T02:19:30.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Endereco.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Model\\Endereco.cs",
-              "RelativeDocumentMoniker": "Model\\Endereco.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Model\\Endereco.cs",
-              "RelativeToolTip": "Model\\Endereco.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T02:08:13.34Z",
+              "WhenOpened": "2025-06-18T02:24:54.81Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Empresa.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Model\\Empresa.cs",
-              "RelativeDocumentMoniker": "Model\\Empresa.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Model\\Empresa.cs",
-              "RelativeToolTip": "Model\\Empresa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Title": "UpdateTenantDto.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\UpdateTenantDto.cs",
+              "RelativeDocumentMoniker": "Data\\Dto\\TenantDto\\UpdateTenantDto.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\UpdateTenantDto.cs",
+              "RelativeToolTip": "Data\\Dto\\TenantDto\\UpdateTenantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T02:04:20.36Z",
+              "WhenOpened": "2025-06-18T02:24:33.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "E:\\Contratos_API\\Contratos\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Tenant.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Model\\Tenant.cs",
+              "RelativeDocumentMoniker": "Model\\Tenant.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Model\\Tenant.cs",
+              "RelativeToolTip": "Model\\Tenant.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T01:59:15.526Z"
+              "WhenOpened": "2025-06-18T02:23:29.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateTenantDto.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\CreateTenantDto.cs",
+              "RelativeDocumentMoniker": "Data\\Dto\\TenantDto\\CreateTenantDto.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\Dto\\TenantDto\\CreateTenantDto.cs",
+              "RelativeToolTip": "Data\\Dto\\TenantDto\\CreateTenantDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T02:23:27.641Z",
+              "EditorCaption": ""
             }
           ]
         }
