@@ -10,7 +10,8 @@ public class TenantProfile : Profile
     {
         CreateMap<Tenant, CreateTenantDto>();
         CreateMap<Tenant, UpdateTenantDto>();
-        CreateMap<UpdateTenantDto,Tenant>();
+        CreateMap<UpdateTenantDto, Tenant>();
         CreateMap<CreateTenantDto, Tenant>();
+        CreateMap<Tenant, ReadTenantDto>();
     }
 }

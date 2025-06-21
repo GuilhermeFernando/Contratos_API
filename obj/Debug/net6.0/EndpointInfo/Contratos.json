@@ -1,0 +1,796 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Contratos",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Empresa": {
+      "post": {
+        "tags": [
+          "Empresa"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmpresaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmpresaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmpresaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Empresa/{id}": {
+      "put": {
+        "tags": [
+          "Empresa"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEmpresaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEmpresaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEmpresaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tenant": {
+      "post": {
+        "tags": [
+          "Tenant"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tenant"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadTenantDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadTenantDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadTenantDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tenant/{id}": {
+      "put": {
+        "tags": [
+          "Tenant"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tenant"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tenant"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateEmpresaDto": {
+        "required": [
+          "cnpj",
+          "endereco",
+          "razaoSocial",
+          "tenant",
+          "tenantId",
+          "usuario",
+          "usuarioId"
+        ],
+        "type": "object",
+        "properties": {
+          "enderecoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/Endereco"
+          },
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usuario": {
+            "$ref": "#/components/schemas/Usuario"
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "razaoSocial": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "cnpj": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nomeFantasia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "im": {
+            "type": "string",
+            "nullable": true
+          },
+          "naturezaJuridica": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataAbertura": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateTenantDto": {
+        "required": [
+          "dataCriacao",
+          "email",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ddd": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlLogo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Empresa": {
+        "required": [
+          "cnpj",
+          "empresaId",
+          "endereco",
+          "enderecoId",
+          "razaoSocial",
+          "tenant",
+          "tenantId",
+          "usuario",
+          "usuarioId"
+        ],
+        "type": "object",
+        "properties": {
+          "empresaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enderecoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/Endereco"
+          },
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usuario": {
+            "$ref": "#/components/schemas/Usuario"
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "razaoSocial": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "cnpj": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nomeFantasia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "im": {
+            "type": "string",
+            "nullable": true
+          },
+          "naturezaJuridica": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataAbertura": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Endereco": {
+        "required": [
+          "bairro",
+          "cep",
+          "cidade",
+          "enderecoId",
+          "estado",
+          "logradouro",
+          "numero",
+          "pais"
+        ],
+        "type": "object",
+        "properties": {
+          "enderecoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cep": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "logradouro": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "numero": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bairro": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "cidade": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "estado": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "pais": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "complemento": {
+            "type": "string",
+            "nullable": true
+          },
+          "empresa": {
+            "$ref": "#/components/schemas/Empresa"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ReadTenantDto": {
+        "required": [
+          "dataCriacao",
+          "email",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ddd": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlLogo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Tenant": {
+        "required": [
+          "dataCriacao",
+          "email",
+          "nome",
+          "tenantId"
+        ],
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ddd": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlLogo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateEmpresaDto": {
+        "type": "object",
+        "properties": {
+          "razaoSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "cnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "nomeFantasia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "im": {
+            "type": "string",
+            "nullable": true
+          },
+          "naturezaJuridica": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataAbertura": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateTenantDto": {
+        "required": [
+          "dataCriacao",
+          "email",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataCriacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ddd": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlLogo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Usuario": {
+        "required": [
+          "email",
+          "nomeUsuario",
+          "senha",
+          "usuarioId"
+        ],
+        "type": "object",
+        "properties": {
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeUsuario": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "senha": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlLogo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

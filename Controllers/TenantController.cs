@@ -16,8 +16,8 @@ public class TenantController : ControllerBase
 
     public TenantController(ContratoContext context, IMapper mapper)
     {
-        mapper = _mapper;
-        context = _context;
+        _mapper = mapper;
+        _context = context;
     }
 
     [HttpPost]
@@ -25,14 +25,13 @@ public class TenantController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult CadastroTenant([FromBody] CreateTenantDto tenantDto)
     {
-        var tenant = _mapper.Map<Tenant>(tenantDto);
+        Tenant tenant = _mapper.Map<Tenant>(tenantDto);
         _context.Tenants.Add(tenant);
         _context.SaveChanges();
-
-        return CreatedAtAction(nameof(CadastroTenant), new { id = tenant.TenantId }, tenant);
+        return CreatedAtAction(nameof(RecuperaTenantId), new { id = tenant.TenantId }, tenant);
     }
 
-    [HttpPut("[id]")]
+    [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult AtualizaTenant(int id, [FromBody] UpdateTenantDto updateTenantDto)
@@ -62,5 +61,17 @@ public class TenantController : ControllerBase
     public IEnumerable<ReadTenantDto> RecuperaTenants()
     {
         return _mapper.Map<IEnumerable<ReadTenantDto>>(_context.Tenants.ToList());
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult DeletaTenant(int id)
+    {
+        var tenant = _context.Tenants.FirstOrDefault(tnts => tnts.TenantId == id);
+        if (tenant == null) return NotFound();
+        _context.Tenants.Remove(tenant);
+        _context.SaveChanges();
+        return NoContent();
     }
 }

@@ -6,7 +6,7 @@ namespace Contratos.Data;
 
 public class ContratoContext : DbContext
 {
-    public ContratoContext( DbContextOptions<ContratoContext> opt): base()
+    public ContratoContext( DbContextOptions<ContratoContext> opt): base(opt)
     {
     }
     public DbSet<Empresa> Empresas { get; set; }
@@ -22,12 +22,12 @@ public class ContratoContext : DbContext
             .HasForeignKey<Empresa>(e => e.EnderecoId)
             .OnDelete(DeleteBehavior.Restrict); 
 
-        modelBuilder.Entity<Empresa>()
+       /* modelBuilder.Entity<Empresa>()
             .HasOne(e => e.Usuario)
             .WithOne(u => u.Empresas)
             .HasForeignKey<Empresa>(e => e.UsuarioId)
             .OnDelete(DeleteBehavior.Restrict);
-
+       */
         modelBuilder.Entity<Contrato>()
             .HasMany(c => c.FormasPagamento)
             .WithOne(fp => fp.Contrato)
