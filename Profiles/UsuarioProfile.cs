@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contratos.Data.Dto.TenantDto;
 using Contratos.Data.Dto.UsuarioDto;
 using Contratos.Model;
 
@@ -12,6 +13,8 @@ public class UsuarioProfile : Profile
         CreateMap<Usuario, UpdateUsuarioDto>();
         CreateMap<CreateUsuarioDto, Usuario>();
         CreateMap<UpdateUsuarioDto, Usuario>();
+        CreateMap<Usuario, ReadUsuarioDto>();
+
 
     }
 }

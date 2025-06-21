@@ -14,5 +14,5 @@ public class CreateUsuarioDto
     public string Telefone { get; set; }
     public string UrlLogo { get; set; }
     public int TenantId { get; set; }
-    public Tenant Tenant { get; set; }
+  
 }
