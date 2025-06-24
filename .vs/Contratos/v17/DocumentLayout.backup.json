@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "E:\\Contratos_API\\Contratos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\enderecocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\enderecocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\tenantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\tenantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\dto\\enderecodto\\createenderecodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\dto\\enderecodto\\createenderecodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|e:\\contratos_api\\contratos\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +30,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ContratoContext.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\ContratoContext.cs",
+              "RelativeDocumentMoniker": "Data\\ContratoContext.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\ContratoContext.cs",
+              "RelativeToolTip": "Data\\ContratoContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T03:09:44.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateEnderecoDto.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Data\\Dto\\EnderecoDto\\CreateEnderecoDto.cs",
+              "RelativeDocumentMoniker": "Data\\Dto\\EnderecoDto\\CreateEnderecoDto.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Data\\Dto\\EnderecoDto\\CreateEnderecoDto.cs",
+              "RelativeToolTip": "Data\\Dto\\EnderecoDto\\CreateEnderecoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T03:08:44.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EnderecoController.cs",
+              "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Controllers\\EnderecoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EnderecoController.cs",
+              "ToolTip": "E:\\Contratos_API\\Contratos\\Controllers\\EnderecoController.cs",
+              "RelativeToolTip": "Controllers\\EnderecoController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T03:04:58.99Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,14 +79,14 @@
               "RelativeDocumentMoniker": "Controllers\\TenantController.cs",
               "ToolTip": "E:\\Contratos_API\\Contratos\\Controllers\\TenantController.cs",
               "RelativeToolTip": "Controllers\\TenantController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-23T02:57:11.158Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "EmpresaController.cs",
               "DocumentMoniker": "E:\\Contratos_API\\Contratos\\Controllers\\EmpresaController.cs",
               "RelativeDocumentMoniker": "Controllers\\EmpresaController.cs",

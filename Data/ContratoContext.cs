@@ -13,6 +13,7 @@ public class ContratoContext : DbContext
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Tenant> Tenants { get; set; }
+    public DbSet<Contratante> Contratantes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,13 +22,7 @@ public class ContratoContext : DbContext
             .WithOne()
             .HasForeignKey<Empresa>(e => e.EnderecoId)
             .OnDelete(DeleteBehavior.Restrict); 
-
-       /* modelBuilder.Entity<Empresa>()
-            .HasOne(e => e.Usuario)
-            .WithOne(u => u.Empresas)
-            .HasForeignKey<Empresa>(e => e.UsuarioId)
-            .OnDelete(DeleteBehavior.Restrict);
-       */
+                
         modelBuilder.Entity<Contrato>()
             .HasMany(c => c.FormasPagamento)
             .WithOne(fp => fp.Contrato)
