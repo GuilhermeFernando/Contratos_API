@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Model;
+using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Model;
+namespace Contratos.Data.Dto.ContratoDto;
 
-public class Contrato
+public class CreateContratoDto
 {
-    [Key]
-    [Required]
-    public int ContratoId { get; set; }
-    [Required]
     public int EmpresaId { get; set; }
     [Required]
     public Empresa Empresa { get; set; }

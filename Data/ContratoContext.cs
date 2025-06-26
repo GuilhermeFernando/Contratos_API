@@ -14,6 +14,8 @@ public class ContratoContext : DbContext
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<Contratante> Contratantes { get; set; }
+    public DbSet<Contrato> Contratos { get; set; }
+    public DbSet<FormaPagamento> FormasPagamento { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

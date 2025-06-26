@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Model;
+using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Model;
+namespace Contratos.Data.Dto.ContratoDto;
 
-public class Contrato
+public class UpdateContratoDto
 {
-    [Key]
-    [Required]
-    public int ContratoId { get; set; }
-    [Required]
     public int EmpresaId { get; set; }
     [Required]
     public Empresa Empresa { get; set; }
@@ -24,4 +21,5 @@ public class Contrato
     public DateTime DataFim { get; set; }
     public double Valor { get; set; }
     public FormaPagamento FormasPagamento { get; set; }
+
 }

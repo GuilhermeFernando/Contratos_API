@@ -4,7 +4,6 @@ using Contratos.Data.Dto.ContratanteDto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace Contratos.Controllers;
 
