@@ -18,7 +18,7 @@ public class FormaPagamento
     [Required]
     public DateTime DataAlteracao { get; set; }
     public int ContratoId { get; set; }
-    public Contrato Contrato { get; set; }
+    public Contrato? Contrato { get; set; }
 
 
 }
