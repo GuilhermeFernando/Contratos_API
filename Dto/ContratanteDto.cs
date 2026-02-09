@@ -1,9 +1,9 @@
 ﻿using Contratos.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto.ContratanteDto;
+namespace Contratos.Dto;
 
-public class UpdateContratanteDto
+public class ContratanteDto
 {
     [Required]
     public int EmpresaId { get; set; }

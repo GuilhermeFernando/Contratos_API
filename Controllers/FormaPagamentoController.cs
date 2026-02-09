@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.FormaPagamentoDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,54 +22,54 @@ public class FormaPagamentoController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CadastroFormaPagamento([FromBody] CreateFormaPagamentoDto formaPagamentoDto)
+    public async Task<ActionResult> CadastroFormaPagamento([FromBody] FormaPagamentoDto formaPagamentoDto)
     {
         var formaPagamento = _mapper.Map<FormaPagamento>(formaPagamentoDto);
         _context.FormasPagamento.Add(formaPagamento);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(RecuperaFormaPagamentoId), new { id = formaPagamento.FormaPagamentoId }, formaPagamento);
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaFormaPagamentoId(int id)
+    public async Task<IActionResult> RecuperaFormaPagamentoId(int id)
     {
-        var formaPagamento = _context.FormasPagamento.FirstOrDefault(fp => fp.FormaPagamentoId == id);
+        var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();
-        var formaPagamentoDto = _mapper.Map<ReadFormaPagamentoDto>(formaPagamento);
+        var formaPagamentoDto = _mapper.Map<FormaPagamentoDto>(formaPagamento);
         return Ok(formaPagamentoDto);
     }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult RecuperaFormasPagamento()
+    public async Task<IActionResult> RecuperaFormasPagamento()
     {
-        var formasPagamento = _context.FormasPagamento.ToList();
-        var formasPagamentoDto = _mapper.Map<List<ReadFormaPagamentoDto>>(formasPagamento);
+        var formasPagamento = await _context.FormasPagamento.ToListAsync();
+        var formasPagamentoDto = _mapper.Map<List<FormaPagamentoDto>>(formasPagamento);
         return Ok(formasPagamentoDto);
     }
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaFormaPagamento(int id, [FromBody] UpdateFormaPagamentoDto updateFormaPagamentoDto)
+    public async Task<IActionResult> AtualizaFormaPagamento(int id, [FromBody] FormaPagamentoDto updateFormaPagamentoDto)
     {
-        var formaPagamento = _context.FormasPagamento.FirstOrDefault(fp => fp.FormaPagamentoId == id);
+        var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();
         _mapper.Map(updateFormaPagamentoDto, formaPagamento);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaFormaPagamento(int id)
+    public async Task<IActionResult> DeletaFormaPagamento(int id)
     {
-        var formaPagamento = _context.FormasPagamento.FirstOrDefault(fp => fp.FormaPagamentoId == id);
+        var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();
         _context.FormasPagamento.Remove(formaPagamento);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 

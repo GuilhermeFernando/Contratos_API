@@ -1,9 +1,9 @@
 ﻿using Contratos.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto.UsuarioDto;
+namespace Contratos.Dto;
 
-public class UpdateUsuarioDto
+public class UsuarioDto 
 {
     [StringLength(100, ErrorMessage = "O nome de usuário deve ter no máximo 100 caracteres.")]
     public string NomeUsuario { get; set; }
@@ -14,5 +14,5 @@ public class UpdateUsuarioDto
     public string Telefone { get; set; }
     public string UrlLogo { get; set; }
     public int TenantId { get; set; }
-
+  
 }

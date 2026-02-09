@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.ContratanteDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,7 @@ public class ContratanteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> CadastroContratante([FromBody] CreateContratanteDto contratanteDto)
+    public async Task<IActionResult> CadastroContratante([FromBody] ContratanteDto contratanteDto)
     {
         try
         {
@@ -45,12 +45,12 @@ public class ContratanteController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaContratanteId(int id)
+    public async Task<IActionResult> RecuperaContratanteId(int id)
     {
         try
         {
-            var contratante = _context.Contratantes.FirstOrDefault(c => c.ContratanteId == id);
-            var contratanteDto = _mapper.Map<ReadContratanteDto>(contratante);
+            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
+            var contratanteDto = _mapper.Map<ContratanteDto>(contratante);
             return Ok(contratanteDto);
         }
         catch (Exception ex)
@@ -66,7 +66,7 @@ public class ContratanteController : ControllerBase
         try
         {
             var contratantes = await _context.Contratantes.ToListAsync();
-            var contratantesDto = _mapper.Map<List<ReadContratanteDto>>(contratantes);
+            var contratantesDto = _mapper.Map<List<ContratanteDto>>(contratantes);
             return Ok(contratantesDto);
         }
         catch (Exception ex)
@@ -80,13 +80,13 @@ public class ContratanteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult AtualizaContratante(int id, [FromBody] UpdateContratanteDto updateContratanteDto)
+    public async Task<IActionResult> AtualizaContratante(int id, [FromBody] ContratanteDto updateContratanteDto)
     {
         try 
         {
-            var contratante = _context.Contratantes.FirstOrDefault(c => c.ContratanteId == id);
+            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
             _mapper.Map(updateContratanteDto, contratante);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return NoContent();
         }
         catch (Exception ex)
@@ -98,13 +98,13 @@ public class ContratanteController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaContratante(int id)
+    public async Task<IActionResult> DeletaContratante(int id)
     {
         try
         {
-            var contratante = _context.Contratantes.FirstOrDefault(c => c.ContratanteId == id);
+            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
             _context.Contratantes.Remove(contratante);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return NoContent();
         }
         catch (Exception ex)

@@ -1,9 +1,9 @@
 ﻿using Contratos.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto.EnderecoDto;
+namespace Contratos.Dto;
 
-public class CreateEnderecoDto
+public class EnderecoDto
 {
     public string CEP { get; set; }
     [Required]
@@ -19,5 +19,5 @@ public class CreateEnderecoDto
     [Required]
     public string Pais { get; set; }
     public string Complemento { get; set; }
-    public virtual Empresa Empresa { get; set; }
+    public int EmpresaId { get; set; }
 }

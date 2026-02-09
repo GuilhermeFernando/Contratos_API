@@ -1,9 +1,9 @@
 ﻿using Contratos.Model;
 using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto.FormaPagamentoDto;
+namespace Contratos.Dto;
 
-public class ReadFormaPagamentoDto
+public class FormaPagamentoDto
 {
     [Required]
     public string Descricao { get; set; }

@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.EmpresaDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Contratos.Controllers;
 
@@ -23,76 +24,74 @@ public class EmpresaController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CadastroEmpresa([FromBody] CreateEmpresaDto empresaDto)
+    public async Task<IActionResult> CadastroEmpresa([FromBody] EmpresaDto empresaDto)
     {
         Empresa empresa = _mapper.Map<Empresa>(empresaDto);
         _context.Empresas.Add(empresa);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(CadastroEmpresa), new { id = empresa.EmpresaId }, empresa);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaEmpresa(int id, [FromBody] UpdateEmpresaDto updateEmpresaDto)
+    public async Task<IActionResult> AtualizaEmpresa(int id, [FromBody] EmpresaDto updateEmpresaDto)
     {
-        var emp = _context.Empresas.FirstOrDefault(empresa => empresa.EmpresaId == id);
+        var emp = await _context.Empresas.FirstOrDefaultAsync(empresa => empresa.EmpresaId == id);
         if (emp == null) return NotFound();
         _mapper.Map(updateEmpresaDto, emp);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaEmpresaId(int id)
+    public async Task<IActionResult> RecuperaEmpresaId(int id)
     {
-        var empresa = _context.Empresas.FirstOrDefault(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
-        var empresaDto = _mapper.Map<ReadEmpresaDto>(empresa);
+        var empresaDto = _mapper.Map<EmpresaDto>(empresa);
         return Ok(empresaDto);
     }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]   
-    public IActionResult RecuperaEmpresas()
+    public async Task<IActionResult> RecuperaEmpresas()
     {
-        var empresas = _context.Empresas.ToList();
+        var empresas =await _context.Empresas.ToListAsync();
         if (empresas == null || !empresas.Any()) return NotFound();
-        var empresasDto = _mapper.Map<List<ReadEmpresaDto>>(empresas);
+        var empresasDto = _mapper.Map<List<EmpresaDto>>(empresas);
         return Ok(empresasDto);
     }
 
     [HttpPatch("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaEmpresaParcial(int id, [FromBody] JsonPatchDocument<UpdateEmpresaDto> patchDoc)
+    public async Task<IActionResult> AtualizaEmpresaParcial(int id, [FromBody] JsonPatchDocument<EmpresaDto> patchDoc)
     {
-        var empresa = _context.Empresas.FirstOrDefault(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
         
-        var empresaToPatch = _mapper.Map<UpdateEmpresaDto>(empresa);
+        var empresaToPatch = _mapper.Map<EmpresaDto>(empresa);
         patchDoc.ApplyTo(empresaToPatch, ModelState);
         if (!ModelState.IsValid) return BadRequest(ModelState);
         _mapper.Map(empresaToPatch, empresa);
-        _context.SaveChanges();
-        
+        await _context.SaveChangesAsync();        
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaEmpresa(int id)
+    public async Task<IActionResult> DeletaEmpresa(int id)
     {
-        var empresa = _context.Empresas.FirstOrDefault(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
         
         _context.Empresas.Remove(empresa);
-        _context.SaveChanges();
-        
+        await _context.SaveChangesAsync();        
         return NoContent();
     }
 

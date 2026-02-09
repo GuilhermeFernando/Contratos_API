@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.EnderecoDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,57 +24,57 @@ public class EnderecoController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CadastroEndereco([FromBody] CreateEnderecoDto enderecoDto)
+    public async Task<IActionResult> CadastroEndereco([FromBody] EnderecoDto enderecoDto)
     {
         Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
         _context.Enderecos.Add(endereco);
-        _context.SaveChanges();        
+        await _context.SaveChangesAsync();        
         return CreatedAtAction(nameof(CadastroEndereco), new { id = endereco.EnderecoId }, endereco);
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaEnderecoId(int id)
+    public async Task<IActionResult> RecuperaEnderecoId(int id)
     {
         var endereco = _context.Enderecos.FirstOrDefault(end => end.EnderecoId == id);
         if (endereco == null) return NotFound();
-        var enderecoDto = _mapper.Map<ReadEnderecoDto>(endereco);
+        var enderecoDto = _mapper.Map<EnderecoDto>(endereco);
         return Ok(enderecoDto);
     }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaEnderecos()
+    public async Task<IActionResult> RecuperaEnderecos()
     {
         var enderecos = _context.Enderecos.ToList();
         if (enderecos == null || !enderecos.Any()) return NotFound();
-        var enderecosDto = _mapper.Map<List<ReadEnderecoDto>>(enderecos);
+        var enderecosDto = _mapper.Map<List<EnderecoDto>>(enderecos);
         return Ok(enderecosDto);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaEndereco(int id, [FromBody] UpdateEnderecoDto updateEnderecoDto)
+    public async Task<IActionResult> AtualizaEndereco(int id, [FromBody] EnderecoDto updateEnderecoDto)
     {
-        var end = _context.Enderecos.FirstOrDefault(endereco => endereco.EnderecoId == id);
+        var end = await _context.Enderecos.FirstOrDefaultAsync(endereco => endereco.EnderecoId == id);
         if (end == null) return NotFound();
         _mapper.Map(updateEnderecoDto, end);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaEndereco(int id)
+    public async Task<IActionResult> DeletaEndereco(int id)
     {
-        var end = _context.Enderecos.FirstOrDefault(endereco => endereco.EnderecoId == id);
+        var end = await _context.Enderecos.FirstOrDefaultAsync(endereco => endereco.EnderecoId == id);
         if (end == null) return NotFound();
         _context.Enderecos.Remove(end);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 }

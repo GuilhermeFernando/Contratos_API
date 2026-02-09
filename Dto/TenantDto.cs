@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Contratos.Data.Dto.TenantDto;
+namespace Contratos.Dto;
 
-public class CreateTenantDto
+public class TenantDto
 {
     [Required]
     public string Nome { get; set; }

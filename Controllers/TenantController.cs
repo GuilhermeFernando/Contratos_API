@@ -2,10 +2,10 @@
 
 using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.EmpresaDto;
-using Contratos.Data.Dto.TenantDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -23,23 +23,23 @@ public class TenantController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CadastroTenant([FromBody] CreateTenantDto tenantDto)
+    public async Task<IActionResult> CadastroTenant([FromBody] TenantDto tenantDto)
     {
         Tenant tenant = _mapper.Map<Tenant>(tenantDto);
         _context.Tenants.Add(tenant);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(RecuperaTenantId), new { id = tenant.TenantId }, tenant);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaTenant(int id, [FromBody] UpdateTenantDto updateTenantDto)
+    public async Task<IActionResult> AtualizaTenant(int id, [FromBody] TenantDto updateTenantDto)
     {
-        var tnt = _context.Tenants.FirstOrDefault(tnts => tnts.TenantId == id);
+        var tnt = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tnt == null) return NotFound();
         _mapper.Map(updateTenantDto, tnt);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
@@ -47,31 +47,31 @@ public class TenantController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaTenantId(int id)
+    public async Task<IActionResult> RecuperaTenantId(int id)
     {
-        var tenant = _context.Tenants.FirstOrDefault(tnts => tnts.TenantId == id);
+        var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();
-        var tenantDto = _mapper.Map<ReadTenantDto>(tenant);
+        var tenantDto = _mapper.Map<TenantDto>(tenant);
         return Ok(tenantDto);
     }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
 
-    public IEnumerable<ReadTenantDto> RecuperaTenants()
+    public async Task<IEnumerable<TenantDto>> RecuperaTenants()
     {
-        return _mapper.Map<IEnumerable<ReadTenantDto>>(_context.Tenants.ToList());
+        return _mapper.Map<IEnumerable<TenantDto>>(await _context.Tenants.ToListAsync());
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaTenant(int id)
+    public async Task<IActionResult> DeletaTenant(int id)
     {
-        var tenant = _context.Tenants.FirstOrDefault(tnts => tnts.TenantId == id);
+        var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();
         _context.Tenants.Remove(tenant);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 }

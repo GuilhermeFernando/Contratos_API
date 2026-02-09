@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Contratos_API\\Contratos.csproj": {}
+    "D:\\Desenvolvimento\\Contratos_API\\Contratos.csproj": {}
   },
   "projects": {
-    "H:\\Contratos_API\\Contratos.csproj": {
+    "D:\\Desenvolvimento\\Contratos_API\\Contratos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Contratos_API\\Contratos.csproj",
+        "projectUniqueName": "D:\\Desenvolvimento\\Contratos_API\\Contratos.csproj",
         "projectName": "Contratos",
-        "projectPath": "H:\\Contratos_API\\Contratos.csproj",
-        "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
-        "outputPath": "H:\\Contratos_API\\obj\\",
+        "projectPath": "D:\\Desenvolvimento\\Contratos_API\\Contratos.csproj",
+        "packagesPath": "C:\\Users\\guilherme.machado\\.nuget\\packages\\",
+        "outputPath": "D:\\Desenvolvimento\\Contratos_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\guilherme.machado\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

@@ -1,4 +1,4 @@
-﻿namespace Contratos.Data.Dto.UsuarioDto;
+﻿namespace Contratos.Dto;
 
 public class TokenDto
 {

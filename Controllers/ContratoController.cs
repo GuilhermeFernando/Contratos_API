@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Contratos.Data;
-using Contratos.Data.Dto.ContratoDto;
+using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -24,11 +25,11 @@ public class ContratoController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CadastroContrato([FromBody] CreateContratoDto contratoDto)
+    public async Task<IActionResult> CadastroContrato([FromBody] ContratoDto contratoDto)
     {
         var contrato = _mapper.Map<Contrato>(contratoDto);
         _context.Contratos.Add(contrato);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(RecuperaContratoId), new { id = contrato.ContratoId }, contrato);
     }
 
@@ -36,21 +37,21 @@ public class ContratoController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult RecuperaContratoId(int id)
+    public async Task<IActionResult> RecuperaContratoId(int id)
     {
-        var contrato = _context.Contratos.FirstOrDefault(c => c.ContratoId == id);
+        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
-        var contratoDto = _mapper.Map<ReadContratoDto>(contrato);
+        var contratoDto = _mapper.Map<ContratoDto>(contrato);
         return Ok(contratoDto);
     }
 
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult RecuperaContratos()
+    public async Task<IActionResult >RecuperaContratos()
     {
-        var contratos = _context.Contratos.ToList();
-        var contratosDto = _mapper.Map<List<ReadContratoDto>>(contratos);
+        var contratos = await _context.Contratos.ToListAsync();
+        var contratosDto = _mapper.Map<List<ContratoDto>>(contratos);
         return Ok(contratosDto);
     }
 
@@ -58,24 +59,24 @@ public class ContratoController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult AtualizaContrato(int id, [FromBody] UpdateContratoDto updateContratoDto)
+    public async Task<IActionResult> AtualizaContrato(int id, [FromBody] ContratoDto updateContratoDto)
     {
-        var contrato = _context.Contratos.FirstOrDefault(c => c.ContratoId == id);
+        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
         _mapper.Map(updateContratoDto, contrato);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult DeletaContrato(int id)
+    public async Task<IActionResult> DeletaContrato(int id)
     {
-        var contrato = _context.Contratos.FirstOrDefault(c => c.ContratoId == id);
+        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
         _context.Contratos.Remove(contrato);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 }
