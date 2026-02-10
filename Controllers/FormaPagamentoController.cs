@@ -3,6 +3,7 @@ using Contratos.Data;
 using Contratos.Dto;
 using Contratos.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Contratos.Controllers;
 
