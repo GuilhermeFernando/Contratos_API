@@ -35,7 +35,7 @@ public class EmpresaController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaEmpresa(int id, [FromBody] EmpresaDto updateEmpresaDto)
+    public async Task<IActionResult> AtualizaEmpresa(Guid id, [FromBody] EmpresaDto updateEmpresaDto)
     {
         var emp = await _context.Empresas.FirstOrDefaultAsync(empresa => empresa.EmpresaId == id);
         if (emp == null) return NotFound();
@@ -47,7 +47,7 @@ public class EmpresaController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaEmpresaId(int id)
+    public async Task<IActionResult> RecuperaEmpresaId(Guid id)
     {
         var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
@@ -69,7 +69,7 @@ public class EmpresaController : ControllerBase
     [HttpPatch("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaEmpresaParcial(int id, [FromBody] JsonPatchDocument<EmpresaDto> patchDoc)
+    public async Task<IActionResult> AtualizaEmpresaParcial(Guid id, [FromBody] JsonPatchDocument<EmpresaDto> patchDoc)
     {
         var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
@@ -85,7 +85,7 @@ public class EmpresaController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaEmpresa(int id)
+    public async Task<IActionResult> DeletaEmpresa(Guid id)
     {
         var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();

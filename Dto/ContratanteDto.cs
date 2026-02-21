@@ -6,13 +6,13 @@ namespace Contratos.Dto;
 public class ContratanteDto
 {
     [Required]
-    public int EmpresaId { get; set; }
+    public Guid EmpresaId { get; set; }
     [Required]
     public Empresa Empresa { get; set; }
     [Required]
     public string RazaoSocial { get; set; }
     [Required]
-    public int EnderecoId { get; set; }
+    public Guid EnderecoId { get; set; }
     [Required]
     public Endereco Endereco { get; set; }
     [Required]

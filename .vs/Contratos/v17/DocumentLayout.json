@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "H:\\Contratos_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\context.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:context.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\model\\formapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\formapagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\model\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\model\\contrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\contrato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\model\\endereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:model\\endereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:data\\contratocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\contratos.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:contratos.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|h:\\contratos_api\\controllers\\enderecocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28F0E510-66FD-428D-9881-AE6C94C81691}|Contratos.csproj|solutionrelative:controllers\\enderecocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,47 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Context.md",
-              "DocumentMoniker": "H:\\Contratos_API\\Context.md",
-              "RelativeDocumentMoniker": "Context.md",
-              "ToolTip": "H:\\Contratos_API\\Context.md",
-              "RelativeToolTip": "Context.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-01-27T02:11:36.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormaPagamento.cs",
-              "DocumentMoniker": "H:\\Contratos_API\\Model\\FormaPagamento.cs",
-              "RelativeDocumentMoniker": "Model\\FormaPagamento.cs",
-              "ToolTip": "H:\\Contratos_API\\Model\\FormaPagamento.cs",
-              "RelativeToolTip": "Model\\FormaPagamento.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T02:08:47.877Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Contrato.cs",
-              "DocumentMoniker": "H:\\Contratos_API\\Model\\Contrato.cs",
-              "RelativeDocumentMoniker": "Model\\Contrato.cs",
-              "ToolTip": "H:\\Contratos_API\\Model\\Contrato.cs",
-              "RelativeToolTip": "Model\\Contrato.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABoAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T01:57:48.693Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
@@ -85,40 +38,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContratoContext.cs",
-              "DocumentMoniker": "H:\\Contratos_API\\Data\\ContratoContext.cs",
-              "RelativeDocumentMoniker": "Data\\ContratoContext.cs",
-              "ToolTip": "H:\\Contratos_API\\Data\\ContratoContext.cs",
-              "RelativeToolTip": "Data\\ContratoContext.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAADgvxsAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T01:55:58.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Contratos",
-              "DocumentMoniker": "H:\\Contratos_API\\Contratos.csproj",
-              "RelativeDocumentMoniker": "Contratos.csproj",
-              "ToolTip": "H:\\Contratos_API\\Contratos.csproj",
-              "RelativeToolTip": "Contratos.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-27T01:55:32.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "H:\\Contratos_API\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsuarioController.cs",
-              "ToolTip": "H:\\Contratos_API\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "Controllers\\UsuarioController.cs",
+              "DocumentIndex": 0,
+              "Title": "EmpresaController.cs",
+              "DocumentMoniker": "H:\\Contratos_API\\Controllers\\EmpresaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmpresaController.cs",
+              "ToolTip": "H:\\Contratos_API\\Controllers\\EmpresaController.cs",
+              "RelativeToolTip": "Controllers\\EmpresaController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T01:59:53.597Z",
+              "WhenOpened": "2026-02-21T03:06:04.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Empresa.cs",
+              "DocumentMoniker": "H:\\Contratos_API\\Model\\Empresa.cs",
+              "RelativeDocumentMoniker": "Model\\Empresa.cs",
+              "ToolTip": "H:\\Contratos_API\\Model\\Empresa.cs",
+              "RelativeToolTip": "Model\\Empresa.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-21T03:05:40.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Endereco.cs",
+              "DocumentMoniker": "H:\\Contratos_API\\Model\\Endereco.cs",
+              "RelativeDocumentMoniker": "Model\\Endereco.cs",
+              "ToolTip": "H:\\Contratos_API\\Model\\Endereco.cs",
+              "RelativeToolTip": "Model\\Endereco.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-21T03:05:34.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EnderecoController.cs",
+              "DocumentMoniker": "H:\\Contratos_API\\Controllers\\EnderecoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EnderecoController.cs",
+              "ToolTip": "H:\\Contratos_API\\Controllers\\EnderecoController.cs",
+              "RelativeToolTip": "Controllers\\EnderecoController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-21T03:05:20.546Z",
               "EditorCaption": ""
             }
           ]

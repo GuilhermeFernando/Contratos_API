@@ -6,6 +6,8 @@ namespace Contratos.Dto;
 public class FormaPagamentoDto
 {
     [Required]
+    public Guid FormaPagamentoId { get; set; }
+    [Required]
     public string Descricao { get; set; }
     [Required]
     public int NumeroParcela { get; set; }

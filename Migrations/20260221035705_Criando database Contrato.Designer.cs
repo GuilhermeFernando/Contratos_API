@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contratos.Migrations
 {
     [DbContext(typeof(ContratoContext))]
-    [Migration("20260210021407_CriandoDataBase")]
-    partial class CriandoDataBase
+    [Migration("20260221035705_Criando database Contrato")]
+    partial class CriandodatabaseContrato
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Contratante", b =>
                 {
-                    b.Property<int>("ContratanteId")
+                    b.Property<Guid>("ContratanteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContratanteId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Documento")
                         .IsRequired()
@@ -40,8 +38,14 @@ namespace Contratos.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("EmpresaId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("EnderecoId")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("EnderecoId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
@@ -53,26 +57,24 @@ namespace Contratos.Migrations
 
                     b.HasKey("ContratanteId");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("EmpresaId1");
 
-                    b.HasIndex("EnderecoId");
+                    b.HasIndex("EnderecoId1");
 
                     b.ToTable("Contratantes");
                 });
 
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
                 {
-                    b.Property<int>("ContratoId")
+                    b.Property<Guid>("ContratoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContratoId"));
+                    b.Property<Guid>("ContratanteId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ContratanteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContratanteId1")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ContratanteId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
                         .HasColumnType("datetime2");
@@ -80,14 +82,14 @@ namespace Contratos.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EmpresaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Objeto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
@@ -111,11 +113,9 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Empresa", b =>
                 {
-                    b.Property<int>("EmpresaId")
+                    b.Property<Guid>("EmpresaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpresaId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
@@ -124,11 +124,8 @@ namespace Contratos.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EnderecoId1")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IE")
                         .IsRequired()
@@ -150,20 +147,16 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EmpresaId");
 
                     b.HasIndex("EnderecoId")
                         .IsUnique();
-
-                    b.HasIndex("EnderecoId1")
-                        .IsUnique()
-                        .HasFilter("[EnderecoId1] IS NOT NULL");
 
                     b.HasIndex("TenantId");
 
@@ -174,11 +167,9 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Endereco", b =>
                 {
-                    b.Property<int>("EnderecoId")
+                    b.Property<Guid>("EnderecoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnderecoId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -219,17 +210,15 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.FormaPagamento", b =>
                 {
-                    b.Property<int>("FormaPagamentoId")
+                    b.Property<Guid>("FormaPagamentoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormaPagamentoId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ContratoId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ContratoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("datetime2");
@@ -253,11 +242,9 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Tenant", b =>
                 {
-                    b.Property<int>("TenantId")
+                    b.Property<Guid>("TenantId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TenantId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
@@ -289,11 +276,9 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Usuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
+                    b.Property<Guid>("UsuarioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -312,8 +297,8 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UrlLogo")
                         .IsRequired()
@@ -330,13 +315,13 @@ namespace Contratos.Migrations
                 {
                     b.HasOne("Contratos.Model.Empresa", "Empresa")
                         .WithMany()
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("EmpresaId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Contratos.Model.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoId")
+                        .HasForeignKey("EnderecoId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -348,6 +333,12 @@ namespace Contratos.Migrations
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
                 {
                     b.HasOne("Contratos.Model.Contratante", null)
+                        .WithOne()
+                        .HasForeignKey("Contratos.Model.Contrato", "ContratanteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Contratos.Model.FormaPagamento", null)
                         .WithOne()
                         .HasForeignKey("Contratos.Model.Contrato", "ContratanteId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -383,10 +374,6 @@ namespace Contratos.Migrations
                         .HasForeignKey("Contratos.Model.Empresa", "EnderecoId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Contratos.Model.Endereco", null)
-                        .WithOne("Empresa")
-                        .HasForeignKey("Contratos.Model.Empresa", "EnderecoId1");
 
                     b.HasOne("Contratos.Model.Tenant", "Tenant")
                         .WithMany()
@@ -432,12 +419,6 @@ namespace Contratos.Migrations
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
                 {
                     b.Navigation("FormasPagamento");
-                });
-
-            modelBuilder.Entity("Contratos.Model.Endereco", b =>
-                {
-                    b.Navigation("Empresa")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

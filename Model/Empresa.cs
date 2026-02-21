@@ -6,17 +6,14 @@ public class Empresa
 {
     [Key]
     [Required]
-    public int EmpresaId { get; set; }
+    public Guid EmpresaId { get; set; }
     [Required]
-    public int EnderecoId { get; set; }
-    [Required]
-    public Endereco Endereco { get; set; }
-    [Required]
-    public int UsuarioId { get; set; }
-    [Required]
+    public Guid EnderecoId { get; set; } 
+    public Endereco Endereco { get; set; }   
+    public Guid UsuarioId { get; set; }   
     public Usuario Usuario { get; set; }
     [Required]
-    public int TenantId { get; set; }
+    public Guid TenantId { get; set; }
     [Required]
     public Tenant Tenant { get; set; }
     [Required]

@@ -37,7 +37,7 @@ public class ContratoController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaContratoId(int id)
+    public async Task<IActionResult> RecuperaContratoId(Guid id)
     {
         var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
@@ -59,7 +59,7 @@ public class ContratoController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaContrato(int id, [FromBody] ContratoDto updateContratoDto)
+    public async Task<IActionResult> AtualizaContrato(Guid id, [FromBody] ContratoDto updateContratoDto)
     {
         var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
@@ -71,7 +71,7 @@ public class ContratoController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaContrato(int id)
+    public async Task<IActionResult> DeletaContrato(Guid id)
     {
         var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();

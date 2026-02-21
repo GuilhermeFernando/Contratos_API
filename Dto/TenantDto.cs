@@ -5,6 +5,8 @@ namespace Contratos.Dto;
 public class TenantDto
 {
     [Required]
+    public Guid TenantId { get; set; }
+    [Required]
     public string Nome { get; set; }
     [Required]
     public DateTime DataCriacao { get; set; }

@@ -34,7 +34,7 @@ public class TenantController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaTenant(int id, [FromBody] TenantDto updateTenantDto)
+    public async Task<IActionResult> AtualizaTenant(Guid id, [FromBody] TenantDto updateTenantDto)
     {
         var tnt = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tnt == null) return NotFound();
@@ -47,7 +47,7 @@ public class TenantController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaTenantId(int id)
+    public async Task<IActionResult> RecuperaTenantId(Guid id)
     {
         var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();
@@ -66,7 +66,7 @@ public class TenantController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaTenant(int id)
+    public async Task<IActionResult> DeletaTenant(Guid id)
     {
         var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();

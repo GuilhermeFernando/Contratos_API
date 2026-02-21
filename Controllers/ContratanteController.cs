@@ -45,7 +45,7 @@ public class ContratanteController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaContratanteId(int id)
+    public async Task<IActionResult> RecuperaContratanteId(Guid id)
     {
         try
         {
@@ -80,7 +80,7 @@ public class ContratanteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> AtualizaContratante(int id, [FromBody] ContratanteDto updateContratanteDto)
+    public async Task<IActionResult> AtualizaContratante(Guid id, [FromBody] ContratanteDto updateContratanteDto)
     {
         try 
         {
@@ -98,7 +98,7 @@ public class ContratanteController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaContratante(int id)
+    public async Task<IActionResult> DeletaContratante(Guid id)
     {
         try
         {

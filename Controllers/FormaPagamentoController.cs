@@ -34,7 +34,7 @@ public class FormaPagamentoController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaFormaPagamentoId(int id)
+    public async Task<IActionResult> RecuperaFormaPagamentoId(Guid id)
     {
         var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();
@@ -53,7 +53,7 @@ public class FormaPagamentoController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaFormaPagamento(int id, [FromBody] FormaPagamentoDto updateFormaPagamentoDto)
+    public async Task<IActionResult> AtualizaFormaPagamento(Guid id, [FromBody] FormaPagamentoDto updateFormaPagamentoDto)
     {
         var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();
@@ -65,7 +65,7 @@ public class FormaPagamentoController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaFormaPagamento(int id)
+    public async Task<IActionResult> DeletaFormaPagamento(Guid id)
     {
         var formaPagamento = await _context.FormasPagamento.FirstOrDefaultAsync(fp => fp.FormaPagamentoId == id);
         if (formaPagamento == null) return NotFound();

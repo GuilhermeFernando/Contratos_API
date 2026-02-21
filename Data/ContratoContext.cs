@@ -55,6 +55,12 @@ public class ContratoContext : DbContext
             .HasForeignKey<Contrato>(c => c.ContratanteId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Contrato>()
+            .HasOne<FormaPagamento>()
+            .WithOne()
+            .HasForeignKey<Contrato>(c => c.ContratanteId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         base.OnModelCreating(modelBuilder);
     }
    

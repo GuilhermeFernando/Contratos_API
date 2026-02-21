@@ -6,7 +6,7 @@ public class Contratante
 {
     [Key]
     [Required]
-    public int ContratanteId { get; set; }
+    public Guid ContratanteId { get; set; }
     [Required]
     public int EmpresaId { get; set; }
     [Required]

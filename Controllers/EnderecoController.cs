@@ -35,7 +35,7 @@ public class EnderecoController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaEnderecoId(int id)
+    public async Task<IActionResult> RecuperaEnderecoId(Guid id)
     {
         var endereco = _context.Enderecos.FirstOrDefault(end => end.EnderecoId == id);
         if (endereco == null) return NotFound();
@@ -57,7 +57,7 @@ public class EnderecoController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaEndereco(int id, [FromBody] EnderecoDto updateEnderecoDto)
+    public async Task<IActionResult> AtualizaEndereco(Guid id, [FromBody] EnderecoDto updateEnderecoDto)
     {
         var end = await _context.Enderecos.FirstOrDefaultAsync(endereco => endereco.EnderecoId == id);
         if (end == null) return NotFound();
@@ -69,7 +69,7 @@ public class EnderecoController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaEndereco(int id)
+    public async Task<IActionResult> DeletaEndereco(Guid id)
     {
         var end = await _context.Enderecos.FirstOrDefaultAsync(endereco => endereco.EnderecoId == id);
         if (end == null) return NotFound();

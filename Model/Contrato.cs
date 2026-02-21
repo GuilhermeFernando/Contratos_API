@@ -7,17 +7,17 @@ public class Contrato
 {
     [Key]
     [Required]
-    public int ContratoId { get; set; }
+    public Guid ContratoId { get; set; }
     [Required]
-    public int EmpresaId { get; set; }
+    public Guid EmpresaId { get; set; }
     [Required]
     public Empresa? Empresa { get; set; }
     [Required]
-    public int TenantId { get; set; }
+    public Guid TenantId { get; set; }
     [Required]
     public Tenant? Tenant { get; set; }
     [Required]
-    public int ContratanteId { get; set; }
+    public Guid ContratanteId { get; set; }
     public Contratante? Contratante { get; set; }
     public string? Titulo { get; set; }
     public string? Objeto { get; set; }

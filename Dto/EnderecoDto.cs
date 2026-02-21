@@ -5,6 +5,8 @@ namespace Contratos.Dto;
 
 public class EnderecoDto
 {
+    [Required]
+    public Guid EnderecoId { get; set; }
     public string CEP { get; set; }
     [Required]
     public string Logradouro { get; set; }

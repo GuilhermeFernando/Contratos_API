@@ -6,7 +6,7 @@ public class Usuario
 {
     [Key]
     [Required]
-    public int UsuarioId { get; set; }
+    public Guid UsuarioId { get; set; }
     [Required]
     [StringLength(100, ErrorMessage = "O nome de usuário deve ter no máximo 100 caracteres.")]
     public string NomeUsuario { get; set; } 
@@ -16,7 +16,7 @@ public class Usuario
     public string Senha { get; set; }
     public string Telefone { get; set; }
     public string UrlLogo { get; set; }
-    public int TenantId { get; set; }
+    public Guid TenantId { get; set; }
     public Tenant Tenant { get; set; }
 
 }

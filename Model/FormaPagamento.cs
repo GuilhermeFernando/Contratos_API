@@ -6,7 +6,7 @@ public class FormaPagamento
 {
     [Key]
     [Required]
-    public int FormaPagamentoId { get; set; }
+    public Guid FormaPagamentoId { get; set; }
     [Required]
     public string Descricao { get; set; }
     [Required]
@@ -17,7 +17,7 @@ public class FormaPagamento
     public DateTime DataCriacao { get; set; }
     [Required]
     public DateTime DataAlteracao { get; set; }
-    public int ContratoId { get; set; }
+    public Guid ContratoId { get; set; }
     public Contrato? Contrato { get; set; }
 
 

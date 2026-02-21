@@ -5,8 +5,7 @@ namespace Contratos.Model;
 public class Endereco
 {
     [Key]
-    [Required]
-    public int EnderecoId { get; set; }
+    public Guid EnderecoId { get; set; }
     [Required]
     public string CEP { get; set; }
     [Required]
@@ -22,5 +21,5 @@ public class Endereco
     [Required]
     public string Pais { get; set; }
     public string Complemento { get; set; }
-    public virtual Empresa Empresa { get; set; }
+    
 }

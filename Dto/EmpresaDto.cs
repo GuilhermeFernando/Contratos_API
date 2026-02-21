@@ -5,14 +5,14 @@ namespace Contratos.Dto;
 
 public class EmpresaDto
 {
-    public int EnderecoId { get; set; }
+    public Guid EnderecoId { get; set; }
    
     [Required]
-    public int UsuarioId { get; set; }
+    public Guid UsuarioId { get; set; }
 
     [Required]
-    public int TenantId { get; set; }
-    [Required]
+    public Guid TenantId { get; set; }
+    [Required] 
     public string RazaoSocial { get; set; }
     [Required]
     public string CNPJ { get; set; }

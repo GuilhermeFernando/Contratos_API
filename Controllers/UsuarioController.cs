@@ -72,7 +72,7 @@ public class UsuarioController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> AtualizaUsuario(int id, [FromBody] UsuarioDto updateUsuarioDto)
+    public async Task<IActionResult> AtualizaUsuario(Guid id, [FromBody] UsuarioDto updateUsuarioDto)
     {
         var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
@@ -85,7 +85,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RecuperaUsuarioId(int id)
+    public async Task<IActionResult> RecuperaUsuarioId(Guid id)
     {
         var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
@@ -106,7 +106,7 @@ public class UsuarioController : ControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeletaUsuario(int id)
+    public async Task<IActionResult> DeletaUsuario(Guid id)
     {
         var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();

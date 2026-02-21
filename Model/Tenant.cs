@@ -6,7 +6,7 @@ public class Tenant
 {
     [Key]
     [Required]
-    public int TenantId { get; set; }
+    public Guid TenantId { get; set; }
     [Required]
     public string Nome { get; set; }
     [Required]

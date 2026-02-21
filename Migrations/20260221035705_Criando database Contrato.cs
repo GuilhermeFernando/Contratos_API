@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Contratos.Migrations
 {
     /// <inheritdoc />
-    public partial class CriandoDataBase : Migration
+    public partial class CriandodatabaseContrato : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace Contratos.Migrations
                 name: "Enderecos",
                 columns: table => new
                 {
-                    EnderecoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnderecoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CEP = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Logradouro = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Numero = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -35,8 +34,7 @@ namespace Contratos.Migrations
                 name: "Tenants",
                 columns: table => new
                 {
-                    TenantId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -53,14 +51,13 @@ namespace Contratos.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeUsuario = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UrlLogo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TenantId = table.Column<int>(type: "int", nullable: false)
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,19 +74,17 @@ namespace Contratos.Migrations
                 name: "Empresas",
                 columns: table => new
                 {
-                    EmpresaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EnderecoId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    TenantId = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EnderecoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CNPJ = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NomeFantasia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IE = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IM = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NaturezaJuridica = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataAbertura = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EnderecoId1 = table.Column<int>(type: "int", nullable: true)
+                    DataAbertura = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,11 +95,6 @@ namespace Contratos.Migrations
                         principalTable: "Enderecos",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Empresas_Enderecos_EnderecoId1",
-                        column: x => x.EnderecoId1,
-                        principalTable: "Enderecos",
-                        principalColumn: "EnderecoId");
                     table.ForeignKey(
                         name: "FK_Empresas_Tenants_TenantId",
                         column: x => x.TenantId,
@@ -123,11 +113,12 @@ namespace Contratos.Migrations
                 name: "Contratantes",
                 columns: table => new
                 {
-                    ContratanteId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ContratanteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EnderecoId = table.Column<int>(type: "int", nullable: false),
+                    EnderecoId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeFantasia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Documento = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -135,14 +126,14 @@ namespace Contratos.Migrations
                 {
                     table.PrimaryKey("PK_Contratantes", x => x.ContratanteId);
                     table.ForeignKey(
-                        name: "FK_Contratantes_Empresas_EmpresaId",
-                        column: x => x.EmpresaId,
+                        name: "FK_Contratantes_Empresas_EmpresaId1",
+                        column: x => x.EmpresaId1,
                         principalTable: "Empresas",
                         principalColumn: "EmpresaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Contratantes_Enderecos_EnderecoId",
-                        column: x => x.EnderecoId,
+                        name: "FK_Contratantes_Enderecos_EnderecoId1",
+                        column: x => x.EnderecoId1,
                         principalTable: "Enderecos",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Cascade);
@@ -152,12 +143,11 @@ namespace Contratos.Migrations
                 name: "Contratos",
                 columns: table => new
                 {
-                    ContratoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false),
-                    TenantId = table.Column<int>(type: "int", nullable: false),
-                    ContratanteId = table.Column<int>(type: "int", nullable: false),
-                    ContratanteId1 = table.Column<int>(type: "int", nullable: true),
+                    ContratoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContratanteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContratanteId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Objeto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -196,14 +186,13 @@ namespace Contratos.Migrations
                 name: "FormasPagamento",
                 columns: table => new
                 {
-                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FormaPagamentoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumeroParcela = table.Column<int>(type: "int", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContratoId = table.Column<int>(type: "int", nullable: false)
+                    ContratoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -217,14 +206,14 @@ namespace Contratos.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contratantes_EmpresaId",
+                name: "IX_Contratantes_EmpresaId1",
                 table: "Contratantes",
-                column: "EmpresaId");
+                column: "EmpresaId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contratantes_EnderecoId",
+                name: "IX_Contratantes_EnderecoId1",
                 table: "Contratantes",
-                column: "EnderecoId");
+                column: "EnderecoId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contratos_ContratanteId",
@@ -254,13 +243,6 @@ namespace Contratos.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empresas_EnderecoId1",
-                table: "Empresas",
-                column: "EnderecoId1",
-                unique: true,
-                filter: "[EnderecoId1] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Empresas_TenantId",
                 table: "Empresas",
                 column: "TenantId");
@@ -279,28 +261,60 @@ namespace Contratos.Migrations
                 name: "IX_Usuarios_TenantId",
                 table: "Usuarios",
                 column: "TenantId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Contratos_FormasPagamento_ContratanteId",
+                table: "Contratos",
+                column: "ContratanteId",
+                principalTable: "FormasPagamento",
+                principalColumn: "FormaPagamentoId",
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "FormasPagamento");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratantes_Empresas_EmpresaId1",
+                table: "Contratantes");
 
-            migrationBuilder.DropTable(
-                name: "Contratos");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratos_Empresas_EmpresaId",
+                table: "Contratos");
 
-            migrationBuilder.DropTable(
-                name: "Contratantes");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratantes_Enderecos_EnderecoId1",
+                table: "Contratantes");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratos_Contratantes_ContratanteId",
+                table: "Contratos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratos_Contratantes_ContratanteId1",
+                table: "Contratos");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Contratos_FormasPagamento_ContratanteId",
+                table: "Contratos");
 
             migrationBuilder.DropTable(
                 name: "Empresas");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "Enderecos");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Contratantes");
+
+            migrationBuilder.DropTable(
+                name: "FormasPagamento");
+
+            migrationBuilder.DropTable(
+                name: "Contratos");
 
             migrationBuilder.DropTable(
                 name: "Tenants");

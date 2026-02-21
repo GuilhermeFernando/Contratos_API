@@ -5,6 +5,9 @@ namespace Contratos.Dto;
 
 public class UsuarioDto 
 {
+    [Required]
+    public Guid UsuarioId { get; set; }
+    [Required]
     [StringLength(100, ErrorMessage = "O nome de usuário deve ter no máximo 100 caracteres.")]
     public string NomeUsuario { get; set; }
     [Required]
