@@ -28,7 +28,7 @@ public class ContratoController : ControllerBase
     public async Task<IActionResult> CadastroContrato([FromBody] ContratoDto contratoDto)
     {
         var contrato = _mapper.Map<Contrato>(contratoDto);
-        _context.Contratos.Add(contrato);
+        _context.Contrato.Add(contrato);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(RecuperaContratoId), new { id = contrato.ContratoId }, contrato);
     }
@@ -39,7 +39,7 @@ public class ContratoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RecuperaContratoId(Guid id)
     {
-        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
+        var contrato = await _context.Contrato.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
         var contratoDto = _mapper.Map<ContratoDto>(contrato);
         return Ok(contratoDto);
@@ -50,7 +50,7 @@ public class ContratoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult >RecuperaContratos()
     {
-        var contratos = await _context.Contratos.ToListAsync();
+        var contratos = await _context.Contrato.ToListAsync();
         var contratosDto = _mapper.Map<List<ContratoDto>>(contratos);
         return Ok(contratosDto);
     }
@@ -61,7 +61,7 @@ public class ContratoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaContrato(Guid id, [FromBody] ContratoDto updateContratoDto)
     {
-        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
+        var contrato = await _context.Contrato.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
         _mapper.Map(updateContratoDto, contrato);
         await _context.SaveChangesAsync();
@@ -73,9 +73,9 @@ public class ContratoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeletaContrato(Guid id)
     {
-        var contrato = await _context.Contratos.FirstOrDefaultAsync(c => c.ContratoId == id);
+        var contrato = await _context.Contrato.FirstOrDefaultAsync(c => c.ContratoId == id);
         if (contrato == null) return NotFound();
-        _context.Contratos.Remove(contrato);
+        _context.Contrato.Remove(contrato);
         await _context.SaveChangesAsync();
         return NoContent();
     }

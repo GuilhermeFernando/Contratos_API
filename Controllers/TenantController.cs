@@ -26,7 +26,7 @@ public class TenantController : ControllerBase
     public async Task<IActionResult> CadastroTenant([FromBody] TenantDto tenantDto)
     {
         Tenant tenant = _mapper.Map<Tenant>(tenantDto);
-        _context.Tenants.Add(tenant);
+        _context.Tenant.Add(tenant);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(RecuperaTenantId), new { id = tenant.TenantId }, tenant);
     }
@@ -36,7 +36,7 @@ public class TenantController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaTenant(Guid id, [FromBody] TenantDto updateTenantDto)
     {
-        var tnt = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
+        var tnt = await _context.Tenant.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tnt == null) return NotFound();
         _mapper.Map(updateTenantDto, tnt);
         await _context.SaveChangesAsync();
@@ -49,7 +49,7 @@ public class TenantController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RecuperaTenantId(Guid id)
     {
-        var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
+        var tenant = await _context.Tenant.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();
         var tenantDto = _mapper.Map<TenantDto>(tenant);
         return Ok(tenantDto);
@@ -60,7 +60,7 @@ public class TenantController : ControllerBase
 
     public async Task<IEnumerable<TenantDto>> RecuperaTenants()
     {
-        return _mapper.Map<IEnumerable<TenantDto>>(await _context.Tenants.ToListAsync());
+        return _mapper.Map<IEnumerable<TenantDto>>(await _context.Tenant.ToListAsync());
     }
 
     [HttpDelete("{id}")]
@@ -68,9 +68,9 @@ public class TenantController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeletaTenant(Guid id)
     {
-        var tenant = await _context.Tenants.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
+        var tenant = await _context.Tenant.FirstOrDefaultAsync(tnts => tnts.TenantId == id);
         if (tenant == null) return NotFound();
-        _context.Tenants.Remove(tenant);
+        _context.Tenant.Remove(tenant);
         await _context.SaveChangesAsync();
         return NoContent();
     }

@@ -6,23 +6,17 @@ namespace Contratos.Model;
 public class Contrato
 {
     [Key]
-    [Required]
-    public Guid ContratoId { get; set; }
-    [Required]
-    public Guid EmpresaId { get; set; }
-    [Required]
-    public Empresa? Empresa { get; set; }
-    [Required]
-    public Guid TenantId { get; set; }
-    [Required]
-    public Tenant? Tenant { get; set; }
-    [Required]
-    public Guid ContratanteId { get; set; }
-    public Contratante? Contratante { get; set; }
+    public required Guid ContratoId { get; set; } 
+    public required Guid EmpresaId { get; set; }
+    public required Empresa Empresa { get; set; }
+    public required Guid TenantId { get; set; }
+    public required Tenant Tenant { get; set; }
+    public required Guid ContratanteId { get; set; }
+    public required Contratante Contratante { get; set; }
     public string? Titulo { get; set; }
     public string? Objeto { get; set; }
     public DateTime DataInicio { get; set; }
     public DateTime DataFim { get; set; }
     public double Valor { get; set; }
-    public ICollection<FormaPagamento> FormasPagamento { get; set; }
+    public ICollection<FormaPagamento>? FormasPagamento { get; set; }
 }

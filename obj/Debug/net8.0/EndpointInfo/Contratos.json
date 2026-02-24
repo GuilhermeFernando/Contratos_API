@@ -1444,17 +1444,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UsuarioDto"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UsuarioDto"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UsuarioDto"
+                "$ref": "#/components/schemas/LoginDto"
               }
             }
           }
@@ -1670,8 +1670,8 @@
             "$ref": "#/components/schemas/Empresa"
           },
           "razaoSocial": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "enderecoId": {
             "type": "integer",
@@ -1681,12 +1681,12 @@
             "$ref": "#/components/schemas/Endereco"
           },
           "nomeFantasia": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "documento": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1734,6 +1734,7 @@
       },
       "Contrato": {
         "required": [
+          "contratante",
           "contratanteId",
           "contratoId",
           "empresa",
@@ -1800,10 +1801,15 @@
       },
       "ContratoDto": {
         "required": [
+          "contratante",
           "contratanteId",
+          "dataInicio",
           "empresa",
+          "empresaId",
+          "objeto",
           "tenant",
-          "tenantId"
+          "tenantId",
+          "titulo"
         ],
         "type": "object",
         "properties": {
@@ -1829,12 +1835,12 @@
             "$ref": "#/components/schemas/Contratante"
           },
           "titulo": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "objeto": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "dataInicio": {
             "type": "string",
@@ -1857,11 +1863,19 @@
       "Empresa": {
         "required": [
           "cnpj",
+          "dataAbertura",
           "empresaId",
+          "endereco",
           "enderecoId",
+          "ie",
+          "im",
+          "naturezaJuridica",
+          "nomeFantasia",
           "razaoSocial",
           "tenant",
-          "tenantId"
+          "tenantId",
+          "usuario",
+          "usuarioId"
         ],
         "type": "object",
         "properties": {
@@ -1891,12 +1905,12 @@
             "$ref": "#/components/schemas/Tenant"
           },
           "razaoSocial": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "cnpj": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "nomeFantasia": {
             "type": "string",
@@ -1924,6 +1938,9 @@
       "EmpresaDto": {
         "required": [
           "cnpj",
+          "enderecoId",
+          "ie",
+          "nomeFantasia",
           "razaoSocial",
           "tenantId",
           "usuarioId"
@@ -1951,12 +1968,12 @@
             "type": "string"
           },
           "nomeFantasia": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "ie": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "im": {
             "type": "string",
@@ -2019,6 +2036,8 @@
           "bairro",
           "cep",
           "cidade",
+          "complemento",
+          "enderecoId",
           "estado",
           "logradouro",
           "numero",
@@ -2031,32 +2050,32 @@
             "format": "uuid"
           },
           "cep": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "logradouro": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "numero": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "bairro": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "cidade": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "estado": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "pais": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "complemento": {
             "type": "string",
@@ -2114,8 +2133,8 @@
             "nullable": true
           },
           "empresaId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -2123,6 +2142,7 @@
       "FormaPagamento": {
         "required": [
           "ativo",
+          "contratoId",
           "dataAlteracao",
           "dataCriacao",
           "descricao",
@@ -2136,8 +2156,8 @@
             "format": "uuid"
           },
           "descricao": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "numeroParcela": {
             "type": "integer",
@@ -2212,6 +2232,25 @@
         "type": "object",
         "additionalProperties": false
       },
+      "LoginDto": {
+        "required": [
+          "nomeUsuario",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "nomeUsuario": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "senha": {
+            "minLength": 1,
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "additionalProperties": false
+      },
       "OperationType": {
         "enum": [
           0,
@@ -2255,9 +2294,12 @@
       "Tenant": {
         "required": [
           "dataCriacao",
+          "ddd",
           "email",
           "nome",
-          "tenantId"
+          "telefone",
+          "tenantId",
+          "urlLogo"
         ],
         "type": "object",
         "properties": {
@@ -2266,16 +2308,16 @@
             "format": "uuid"
           },
           "nome": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataCriacao": {
             "type": "string",
             "format": "date-time"
           },
           "email": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "ddd": {
             "type": "string",
@@ -2295,7 +2337,6 @@
       "TenantDto": {
         "required": [
           "dataCriacao",
-          "email",
           "nome",
           "tenantId"
         ],
@@ -2314,8 +2355,8 @@
             "format": "date-time"
           },
           "email": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "ddd": {
             "type": "string",
@@ -2334,9 +2375,10 @@
       },
       "Usuario": {
         "required": [
-          "email",
           "nomeUsuario",
           "senha",
+          "tenant",
+          "tenantId",
           "usuarioId"
         ],
         "type": "object",
@@ -2346,23 +2388,18 @@
             "format": "uuid"
           },
           "nomeUsuario": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "email": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "senha": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "telefone": {
             "type": "string",
             "nullable": true
           },
-          "urlLogo": {
+          "senha": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
             "type": "string",
             "nullable": true
           },
@@ -2380,15 +2417,10 @@
         "required": [
           "email",
           "nomeUsuario",
-          "senha",
-          "usuarioId"
+          "senha"
         ],
         "type": "object",
         "properties": {
-          "usuarioId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "nomeUsuario": {
             "maxLength": 100,
             "minLength": 0,
@@ -2396,23 +2428,21 @@
           },
           "email": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "senha": {
-            "minLength": 1,
-            "type": "string"
+            "minLength": 8,
+            "type": "string",
+            "format": "password"
           },
           "telefone": {
             "type": "string",
             "nullable": true
           },
-          "urlLogo": {
-            "type": "string",
-            "nullable": true
-          },
           "tenantId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false

@@ -31,7 +31,7 @@ public class ContratanteController : ControllerBase
         try
         {
             var contratante = _mapper.Map<Contratante>(contratanteDto);
-            await _context.Contratantes.AddAsync(contratante);
+            await _context.Contratante.AddAsync(contratante);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(RecuperaContratanteId), new { id = contratante.ContratanteId }, contratante);
         }
@@ -49,7 +49,7 @@ public class ContratanteController : ControllerBase
     {
         try
         {
-            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
+            var contratante = await _context.Contratante.FirstOrDefaultAsync(c => c.ContratanteId == id);
             var contratanteDto = _mapper.Map<ContratanteDto>(contratante);
             return Ok(contratanteDto);
         }
@@ -65,7 +65,7 @@ public class ContratanteController : ControllerBase
     {
         try
         {
-            var contratantes = await _context.Contratantes.ToListAsync();
+            var contratantes = await _context.Contratante.ToListAsync();
             var contratantesDto = _mapper.Map<List<ContratanteDto>>(contratantes);
             return Ok(contratantesDto);
         }
@@ -84,7 +84,7 @@ public class ContratanteController : ControllerBase
     {
         try 
         {
-            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
+            var contratante = await _context.Contratante.FirstOrDefaultAsync(c => c.ContratanteId == id);
             _mapper.Map(updateContratanteDto, contratante);
             await _context.SaveChangesAsync();
             return NoContent();
@@ -102,8 +102,9 @@ public class ContratanteController : ControllerBase
     {
         try
         {
-            var contratante = await _context.Contratantes.FirstOrDefaultAsync(c => c.ContratanteId == id);
-            _context.Contratantes.Remove(contratante);
+            var contratante = await _context.Contratante.FirstOrDefaultAsync(c => c.ContratanteId == id);
+            if (contratante == null) return NotFound();
+            _context.Contratante.Remove(contratante);
             await _context.SaveChangesAsync();
             return NoContent();
         }

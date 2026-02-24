@@ -5,18 +5,18 @@ namespace Contratos.Dto;
 
 public class ContratanteDto
 {
-    [Required]
+    [Required(ErrorMessage = "O ID da empresa é obrigatório.")]
     public Guid EmpresaId { get; set; }
-    [Required]
-    public Empresa Empresa { get; set; }
-    [Required]
-    public string RazaoSocial { get; set; }
-    [Required]
+    [Required(ErrorMessage = "A empresa é obrigatória.")]
+    public Empresa? Empresa { get; set; } 
+    [Required(ErrorMessage = "A razão social é obrigatória.")]
+    public string RazaoSocial { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public Guid EnderecoId { get; set; }
-    [Required]
-    public Endereco Endereco { get; set; }
-    [Required]
-    public string NomeFantasia { get; set; }
-    [Required]
-    public string Documento { get; set; }
+    [Required(ErrorMessage = "O endereço é obrigatório.")]
+    public Endereco? Endereco { get; set; }
+    [Required(ErrorMessage = "O nome fantasia é obrigatório.")]
+    public string NomeFantasia { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O documento é obrigatório.")]
+    public string Documento { get; set; } = string.Empty;
 }

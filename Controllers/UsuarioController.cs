@@ -3,6 +3,7 @@ using Contratos.Data;
 using Contratos.Dto;
 using Contratos.Interface;
 using Contratos.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace Contratos.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class UsuarioController : ControllerBase
 {
     private readonly ContratoContext _context;
@@ -27,35 +29,35 @@ public class UsuarioController : ControllerBase
 
 
     [HttpPost("registrar")]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CadastroUsuario([FromBody] UsuarioDto usuarioDto)
     {
-        if (usuarioDto == null || string.IsNullOrWhiteSpace(usuarioDto.Email)) 
-            return BadRequest("Email obrigatório.");
 
-        var usuarioExiste = _context.Usuarios.Any(u => u.Email == usuarioDto.Email);
-        if(usuarioExiste)
-            return BadRequest("Email ja cadastrado.");
+        var usuarioExiste = _context.Usuario.Any(u => u.NomeUsuario == usuarioDto.NomeUsuario);
+        if (usuarioExiste)
+            return BadRequest("Nome de usuário já cadastrado.");
 
         var usuario = _mapper.Map<Usuario>(usuarioDto);
         usuario.Senha = _passwordHasher.HashPassword(usuario, usuarioDto.Senha);
 
-        _context.Usuarios.Add(usuario);
+        _context.Usuario.Add(usuario);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(RecuperaUsuarioId), new { id = usuario.UsuarioId }, null);
+        return CreatedAtAction(nameof(RecuperaUsuarioId), new { id = usuario.UsuarioId }, new {usuario.UsuarioId, usuario.NomeUsuario});
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Login([FromBody] UsuarioDto loginDto)
+    public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
     {
-        if(loginDto == null || string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Senha))
-            return Unauthorized("Email e senha são obrigatorio.");
+        if(loginDto == null || string.IsNullOrWhiteSpace(loginDto.NomeUsuario) || string.IsNullOrWhiteSpace(loginDto.Senha))
+            return Unauthorized("Nome de usuário e senha são obrigatórios.");
 
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
+        var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.NomeUsuario == loginDto.NomeUsuario);
         if (usuario == null)
             return Unauthorized("Credenciais inválidas.");
 
@@ -74,7 +76,7 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaUsuario(Guid id, [FromBody] UsuarioDto updateUsuarioDto)
     {
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
+        var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
         _mapper.Map(updateUsuarioDto, usuario);
         await _context.SaveChangesAsync();
@@ -87,7 +89,7 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RecuperaUsuarioId(Guid id)
     {
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
+        var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
         var usuarioDto = _mapper.Map<UsuarioResponseDto>(usuario);
         return Ok(usuarioDto);
@@ -98,7 +100,7 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RecuperaUsuarios()
     {
-        var usuarios = await _context.Usuarios.ToListAsync();
+        var usuarios = await _context.Usuario.ToListAsync();
         var usuariosDto = _mapper.Map<List<UsuarioResponseDto>>(usuarios);
         return Ok(usuariosDto);
     }
@@ -108,9 +110,9 @@ public class UsuarioController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeletaUsuario(Guid id)
     {
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioId == id);
+        var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
-        _context.Usuarios.Remove(usuario);
+        _context.Usuario.Remove(usuario);
         await _context.SaveChangesAsync();
         return NoContent();
     }

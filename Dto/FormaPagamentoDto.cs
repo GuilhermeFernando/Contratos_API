@@ -5,19 +5,19 @@ namespace Contratos.Dto;
 
 public class FormaPagamentoDto
 {
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public Guid FormaPagamentoId { get; set; }
-    [Required]
-    public string Descricao { get; set; }
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.") ]
+    public string Descricao { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public int NumeroParcela { get; set; }
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public bool Ativo { get; set; } = true;
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public DateTime DataCriacao { get; set; }
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public DateTime DataAlteracao { get; set; }
     public int ContratoId { get; set; }
-    public Contrato Contrato { get; set; }
+    public Contrato? Contrato { get; set; }
 
 }

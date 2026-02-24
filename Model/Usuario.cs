@@ -1,22 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
 public class Usuario
 {
     [Key]
-    [Required]
-    public Guid UsuarioId { get; set; }
-    [Required]
-    [StringLength(100, ErrorMessage = "O nome de usuário deve ter no máximo 100 caracteres.")]
-    public string NomeUsuario { get; set; } 
-    [Required]
-    public string Email { get; set; }
-    [Required]
-    public string Senha { get; set; }
-    public string Telefone { get; set; }
-    public string UrlLogo { get; set; }
-    public Guid TenantId { get; set; }
-    public Tenant Tenant { get; set; }
+    public required Guid UsuarioId { get; set; }
+    public required string NomeUsuario { get; set; }
+    public required string Senha { get; set; }
+    public string Email { get; set; } = string.Empty;    
+    public  string Telefone { get; set; } = string.Empty;
+    public required Guid TenantId { get; set; }
+    public required Tenant Tenant { get; set; }
 
 }

@@ -4,22 +4,14 @@ namespace Contratos.Model;
 
 public class Contratante
 {
-    [Key]
-    [Required]
-    public Guid ContratanteId { get; set; }
-    [Required]
-    public int EmpresaId { get; set; }
-    [Required]
-    public Empresa Empresa { get; set; }
-    [Required]
-    public string RazaoSocial { get; set; }
-    [Required]
-    public int EnderecoId { get; set; }
-    [Required]
-    public Endereco Endereco { get; set; }
-    [Required]
-    public string NomeFantasia { get; set; }
-    [Required]
-    public string Documento { get; set; }
+    [Key] 
+    public required Guid ContratanteId { get; set; }   
+    public required int EmpresaId { get; set; }  
+    public required Empresa Empresa { get; set; }
+    public required string RazaoSocial { get; set; }
+    public required int EnderecoId { get; set; }
+    public required Endereco Endereco { get; set; }
+    public required string NomeFantasia { get; set; }   
+    public required string Documento { get; set; }
 
 }

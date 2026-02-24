@@ -5,15 +5,11 @@ namespace Contratos.Model;
 public class Tenant
 {
     [Key]
-    [Required]
-    public Guid TenantId { get; set; }
-    [Required]
-    public string Nome { get; set; }
-    [Required]
-    public DateTime DataCriacao { get; set; }
-    [Required]
-    public string Email { get; set; }
-    public string Ddd { get; set; }
-    public string Telefone { get; set; }
-    public string UrlLogo { get; set; }
+    public required Guid TenantId { get; set; }
+    public required string Nome { get; set; }
+    public required DateTime DataCriacao { get; set; } 
+    public required string Email { get; set; }
+    public required string Ddd { get; set; }
+    public required string Telefone { get; set; }
+    public required string UrlLogo { get; set; }
 }

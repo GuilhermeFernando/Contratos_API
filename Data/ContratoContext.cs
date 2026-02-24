@@ -9,13 +9,13 @@ public class ContratoContext : DbContext
     public ContratoContext( DbContextOptions<ContratoContext> opt): base(opt)
     {
     }
-    public DbSet<Empresa> Empresas { get; set; }
-    public DbSet<Endereco> Enderecos { get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
-    public DbSet<Tenant> Tenants { get; set; }
-    public DbSet<Contratante> Contratantes { get; set; }
-    public DbSet<Contrato> Contratos { get; set; }
-    public DbSet<FormaPagamento> FormasPagamento { get; set; }
+    public DbSet<Empresa> Empresa { get; set; }
+    public DbSet<Endereco> Endereco { get; set; }
+    public DbSet<Usuario> Usuario { get; set; }
+    public DbSet<Tenant> Tenant { get; set; }
+    public DbSet<Contratante> Contratante { get; set; }
+    public DbSet<Contrato> Contrato { get; set; }
+    public DbSet<FormaPagamento> FormaPagamento { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

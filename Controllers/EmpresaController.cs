@@ -27,7 +27,7 @@ public class EmpresaController : ControllerBase
     public async Task<IActionResult> CadastroEmpresa([FromBody] EmpresaDto empresaDto)
     {
         Empresa empresa = _mapper.Map<Empresa>(empresaDto);
-        _context.Empresas.Add(empresa);
+        _context.Empresa.Add(empresa);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(CadastroEmpresa), new { id = empresa.EmpresaId }, empresa);
     }
@@ -37,7 +37,7 @@ public class EmpresaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaEmpresa(Guid id, [FromBody] EmpresaDto updateEmpresaDto)
     {
-        var emp = await _context.Empresas.FirstOrDefaultAsync(empresa => empresa.EmpresaId == id);
+        var emp = await _context.Empresa.FirstOrDefaultAsync(empresa => empresa.EmpresaId == id);
         if (emp == null) return NotFound();
         _mapper.Map(updateEmpresaDto, emp);
         await _context.SaveChangesAsync();
@@ -49,7 +49,7 @@ public class EmpresaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RecuperaEmpresaId(Guid id)
     {
-        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresa.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
         var empresaDto = _mapper.Map<EmpresaDto>(empresa);
         return Ok(empresaDto);
@@ -60,7 +60,7 @@ public class EmpresaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]   
     public async Task<IActionResult> RecuperaEmpresas()
     {
-        var empresas =await _context.Empresas.ToListAsync();
+        var empresas =await _context.Empresa.ToListAsync();
         if (empresas == null || !empresas.Any()) return NotFound();
         var empresasDto = _mapper.Map<List<EmpresaDto>>(empresas);
         return Ok(empresasDto);
@@ -71,7 +71,7 @@ public class EmpresaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaEmpresaParcial(Guid id, [FromBody] JsonPatchDocument<EmpresaDto> patchDoc)
     {
-        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresa.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
         
         var empresaToPatch = _mapper.Map<EmpresaDto>(empresa);
@@ -87,10 +87,10 @@ public class EmpresaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeletaEmpresa(Guid id)
     {
-        var empresa = await _context.Empresas.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
+        var empresa = await _context.Empresa.FirstOrDefaultAsync(emp => emp.EmpresaId == id);
         if (empresa == null) return NotFound();
         
-        _context.Empresas.Remove(empresa);
+        _context.Empresa.Remove(empresa);
         await _context.SaveChangesAsync();        
         return NoContent();
     }

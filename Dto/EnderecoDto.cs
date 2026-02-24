@@ -5,21 +5,21 @@ namespace Contratos.Dto;
 
 public class EnderecoDto
 {
-    [Required]
+    [Required(ErrorMessage = "O ID do endereço é obrigatório.")]
     public Guid EnderecoId { get; set; }
-    public string CEP { get; set; }
-    [Required]
-    public string Logradouro { get; set; }
-    [Required]
-    public string Numero { get; set; }
-    [Required]
-    public string Bairro { get; set; }
-    [Required]
-    public string Cidade { get; set; }
-    [Required]
-    public string Estado { get; set; }
-    [Required]
-    public string Pais { get; set; }
-    public string Complemento { get; set; }
-    public int EmpresaId { get; set; }
+    public string CEP { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O logradouro é obrigatório.")]
+    public string Logradouro { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O número é obrigatório.")]
+    public string Numero { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O bairro é obrigatório.")]
+    public string Bairro { get; set; } = string.Empty;
+    [Required(ErrorMessage = "A cidade é obrigatória.")]
+    public string Cidade { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O estado é obrigatório.")]
+    public string Estado { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O país é obrigatório.")]
+    public string Pais { get; set; } = string.Empty;
+    public string Complemento { get; set; } = string.Empty;
+    public Guid EmpresaId { get; set; }
 }

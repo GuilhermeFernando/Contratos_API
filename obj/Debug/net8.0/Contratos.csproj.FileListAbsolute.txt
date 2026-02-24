@@ -172,10 +172,8 @@ H:\Contratos_API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 H:\Contratos_API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 H:\Contratos_API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 H:\Contratos_API\bin\Debug\net8.0\Microsoft.OpenApi.dll
-H:\Contratos_API\bin\Debug\net8.0\MySqlConnector.dll
 H:\Contratos_API\bin\Debug\net8.0\Newtonsoft.Json.dll
 H:\Contratos_API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
-H:\Contratos_API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 H:\Contratos_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 H:\Contratos_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 H:\Contratos_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

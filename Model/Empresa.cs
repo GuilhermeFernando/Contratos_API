@@ -4,26 +4,25 @@ namespace Contratos.Model;
 
 public class Empresa
 {
-    [Key]
+    [Key]   
+    public required Guid EmpresaId { get; set; }
     [Required]
-    public Guid EmpresaId { get; set; }
-    [Required]
-    public Guid EnderecoId { get; set; } 
-    public Endereco Endereco { get; set; }   
-    public Guid UsuarioId { get; set; }   
-    public Usuario Usuario { get; set; }
-    [Required]
-    public Guid TenantId { get; set; }
-    [Required]
-    public Tenant Tenant { get; set; }
-    [Required]
-    public string RazaoSocial { get; set; }
-    [Required]
-    public string CNPJ { get; set; }
-    public string NomeFantasia { get; set; }
-    public string IE { get; set; }
-    public string IM { get; set; }
-    public string NaturezaJuridica { get; set; }
-    public DateTime DataAbertura { get; set; }
+    public required Guid EnderecoId { get; set; } 
+    public required Endereco Endereco { get; set; }   
+    public required Guid UsuarioId { get; set; }   
+    public required Usuario Usuario { get; set; }
+
+    public required Guid TenantId { get; set; }
+  
+    public required Tenant Tenant { get; set; }
+
+    public required string RazaoSocial { get; set; }
+    
+    public required string CNPJ { get; set; }
+    public required string NomeFantasia { get; set; }
+    public required string IE { get; set; }
+    public required string IM { get; set; }
+    public required string NaturezaJuridica { get; set; }
+    public required DateTime DataAbertura { get; set; }
      
 }

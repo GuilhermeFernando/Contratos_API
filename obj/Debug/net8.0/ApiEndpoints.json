@@ -1065,7 +1065,7 @@
     "Parameters": [
       {
         "Name": "loginDto",
-        "Type": "Contratos.Dto.UsuarioDto",
+        "Type": "Contratos.Dto.LoginDto",
         "IsRequired": true
       }
     ],

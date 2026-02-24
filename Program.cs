@@ -1,7 +1,5 @@
 using Contratos.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Contratos.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -64,15 +62,10 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
