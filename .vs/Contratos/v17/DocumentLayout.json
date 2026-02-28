@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "Controllers\\EmpresaController.cs",
               "ToolTip": "H:\\Contratos_API\\Controllers\\EmpresaController.cs",
               "RelativeToolTip": "Controllers\\EmpresaController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-21T03:06:04.697Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "RelativeToolTip": "Model\\Empresa.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAgwBEAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-21T03:05:40.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T03:05:40.339Z"
             },
             {
               "$type": "Document",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "Model\\Endereco.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-21T03:05:34.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T03:05:34.439Z"
             },
             {
               "$type": "Document",
@@ -85,8 +83,7 @@
               "RelativeToolTip": "Controllers\\EnderecoController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-21T03:05:20.546Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T03:05:20.546Z"
             }
           ]
         }

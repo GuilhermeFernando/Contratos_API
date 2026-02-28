@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("26fb8786-3fb1-4fd7-a1de-0c509211416d")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Contratos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7066db9698e636f9bd7c9284f2c56efc27487fb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e2fea58cb029e3f82929e46f3e8deb491ec9bde")]
 [assembly: System.Reflection.AssemblyProductAttribute("Contratos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Contratos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

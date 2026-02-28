@@ -4,11 +4,13 @@ using AutoMapper;
 using Contratos.Data;
 using Contratos.Dto;
 using Contratos.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TenantController : ControllerBase
 {
     private ContratoContext _context;

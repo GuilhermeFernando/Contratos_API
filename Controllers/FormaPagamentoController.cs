@@ -2,6 +2,7 @@
 using Contratos.Data;
 using Contratos.Dto;
 using Contratos.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace Contratos.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class FormaPagamentoController : ControllerBase
 {
     private readonly ContratoContext _context;

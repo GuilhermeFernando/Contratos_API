@@ -2,14 +2,16 @@
 using Contratos.Data;
 using Contratos.Dto;
 using Contratos.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Contratos.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[Authorize]
 public class EnderecoController : ControllerBase
 {
     private ContratoContext _context;

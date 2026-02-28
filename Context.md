@@ -194,3 +194,13 @@ Arquivos atualmente abertos (referência)
 - `Context.md`
 
 Se desejar, posso aplicar as correções sugeridas automaticamente nos arquivos do workspace (criar `IJwtService`, renomear/ajustar `JwtService`, atualizar `Program.cs` com os `using` e `app.UseAuthentication()` e alinhar `appsettings.json`). Quer que eu faça essas alterações agora e gere um PR?
+
+---
+
+flowchart LR
+    A["Pendências"] --> B["❌ Models com int vs Guid\nEmpresa / Contratante"]
+    A --> C["❌ EF Core 6 → 8\nAtualizar .csproj"]
+    A --> D["❌ Swagger AddSecurityDefinition\nBotão Authorize JWT"]
+    A --> E["❌ Pomelo.MySql no .csproj\nRemover pacote desnecessário"]
+    A --> F["❌ Controllers faltando\nTenant, Endereco, Contratante, FormaPagamento"]
+    A --> G["❌ Migrations\nRecriar após correções de tipos"]
