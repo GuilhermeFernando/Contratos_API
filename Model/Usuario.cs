@@ -13,5 +13,5 @@ public class Usuario
     public  string Telefone { get; set; } = string.Empty;
     public required Guid TenantId { get; set; }
     public required Tenant Tenant { get; set; }
-
+    public ICollection<RefreshToken> RefreshTokens { get; set; }
 }

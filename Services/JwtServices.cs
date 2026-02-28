@@ -3,6 +3,7 @@ using Contratos.Model;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Contratos.Services;
@@ -47,5 +48,65 @@ public class JwtServices : IJwtService
 
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
         return (tokenString, expiration);
+    }
+
+    public (string Acesstoken, DateTime AcessTokenExpiration) GenerateAccessToken(Usuario usuario)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var expiration = DateTime.UtcNow.AddMinutes(15);
+
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()),
+            new Claim(ClaimTypes.Name, usuario.NomeUsuario),
+            new Claim(ClaimTypes.Email, usuario.Email ?? ""),
+        };
+
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Audience"],
+            claims: claims,
+            expires: expiration,
+            signingCredentials: signingCredentials
+        );
+
+        var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+        return(tokenValue, expiration);
+    }
+
+
+    public (string RefreshToken, DateTime RefreshTokenExpiration) GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(randomNumber);
+        var refreshToken = Convert.ToBase64String(randomNumber);
+        var expiration = DateTime.UtcNow.AddDays(7);
+        return (refreshToken, expiration);
+    }
+
+    public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+    {
+        var secretKey = _configuration["Jwt:SecretKey"];
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+            ValidateLifetime = false
+            
+        };
+        var tokenHandler = new JwtSecurityTokenHandler();
+
+        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+        if (!(securityToken is JwtSecurityToken jwtSecurityToken) ||
+         !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
+             StringComparison.InvariantCultureIgnoreCase))
+        {
+            throw new SecurityTokenException("Token inválido");
+        }
+        return principal;        
     }
 }

@@ -16,6 +16,7 @@ public class ContratoContext : DbContext
     public DbSet<Contratante> Contratante { get; set; }
     public DbSet<Contrato> Contrato { get; set; }
     public DbSet<FormaPagamento> FormaPagamento { get; set; }
+    public DbSet<RefreshToken> RefreshToken { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,9 +51,9 @@ public class ContratoContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Contrato>()
-            .HasOne<Contratante>()
-            .WithOne()
-            .HasForeignKey<Contrato>(c => c.ContratanteId)
+            .HasOne(c => c.Contratante)
+            .WithMany()
+            .HasForeignKey(c => c.ContratanteId)
             .OnDelete(DeleteBehavior.Restrict);
 
         base.OnModelCreating(modelBuilder);

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Contratos.Migrations
 {
     /// <inheritdoc />
-    public partial class CriandodatabaseContrato : Migration
+    public partial class AddRefreshToken : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Enderecos",
+                name: "Endereco",
                 columns: table => new
                 {
                     EnderecoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -27,11 +27,11 @@ namespace Contratos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enderecos", x => x.EnderecoId);
+                    table.PrimaryKey("PK_Endereco", x => x.EnderecoId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tenants",
+                name: "Tenant",
                 columns: table => new
                 {
                     TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -44,34 +44,33 @@ namespace Contratos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tenants", x => x.TenantId);
+                    table.PrimaryKey("PK_Tenant", x => x.TenantId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "Usuario",
                 columns: table => new
                 {
                     UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NomeUsuario = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NomeUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UrlLogo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
+                    table.PrimaryKey("PK_Usuario", x => x.UsuarioId);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Tenants_TenantId",
+                        name: "FK_Usuario_Tenant_TenantId",
                         column: x => x.TenantId,
-                        principalTable: "Tenants",
+                        principalTable: "Tenant",
                         principalColumn: "TenantId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Empresas",
+                name: "Empresa",
                 columns: table => new
                 {
                     EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -88,66 +87,85 @@ namespace Contratos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Empresas", x => x.EmpresaId);
+                    table.PrimaryKey("PK_Empresa", x => x.EmpresaId);
                     table.ForeignKey(
-                        name: "FK_Empresas_Enderecos_EnderecoId",
+                        name: "FK_Empresa_Endereco_EnderecoId",
                         column: x => x.EnderecoId,
-                        principalTable: "Enderecos",
+                        principalTable: "Endereco",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Empresas_Tenants_TenantId",
+                        name: "FK_Empresa_Tenant_TenantId",
                         column: x => x.TenantId,
-                        principalTable: "Tenants",
+                        principalTable: "Tenant",
                         principalColumn: "TenantId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Empresas_Usuarios_UsuarioId",
+                        name: "FK_Empresa_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contratantes",
+                name: "RefreshToken",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Expirantion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRevoked = table.Column<bool>(type: "bit", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
+                        principalColumn: "UsuarioId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contratante",
                 columns: table => new
                 {
                     ContratanteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false),
-                    EmpresaId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EnderecoId = table.Column<int>(type: "int", nullable: false),
-                    EnderecoId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EnderecoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeFantasia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Documento = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contratantes", x => x.ContratanteId);
+                    table.PrimaryKey("PK_Contratante", x => x.ContratanteId);
                     table.ForeignKey(
-                        name: "FK_Contratantes_Empresas_EmpresaId1",
-                        column: x => x.EmpresaId1,
-                        principalTable: "Empresas",
+                        name: "FK_Contratante_Empresa_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresa",
                         principalColumn: "EmpresaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Contratantes_Enderecos_EnderecoId1",
-                        column: x => x.EnderecoId1,
-                        principalTable: "Enderecos",
+                        name: "FK_Contratante_Endereco_EnderecoId",
+                        column: x => x.EnderecoId,
+                        principalTable: "Endereco",
                         principalColumn: "EnderecoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contratos",
+                name: "Contrato",
                 columns: table => new
                 {
                     ContratoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContratanteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ContratanteId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Objeto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -156,34 +174,29 @@ namespace Contratos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contratos", x => x.ContratoId);
+                    table.PrimaryKey("PK_Contrato", x => x.ContratoId);
                     table.ForeignKey(
-                        name: "FK_Contratos_Contratantes_ContratanteId",
+                        name: "FK_Contrato_Contratante_ContratanteId",
                         column: x => x.ContratanteId,
-                        principalTable: "Contratantes",
+                        principalTable: "Contratante",
                         principalColumn: "ContratanteId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Contratos_Contratantes_ContratanteId1",
-                        column: x => x.ContratanteId1,
-                        principalTable: "Contratantes",
-                        principalColumn: "ContratanteId");
-                    table.ForeignKey(
-                        name: "FK_Contratos_Empresas_EmpresaId",
+                        name: "FK_Contrato_Empresa_EmpresaId",
                         column: x => x.EmpresaId,
-                        principalTable: "Empresas",
+                        principalTable: "Empresa",
                         principalColumn: "EmpresaId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Contratos_Tenants_TenantId",
+                        name: "FK_Contrato_Tenant_TenantId",
                         column: x => x.TenantId,
-                        principalTable: "Tenants",
+                        principalTable: "Tenant",
                         principalColumn: "TenantId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FormasPagamento",
+                name: "FormaPagamento",
                 columns: table => new
                 {
                     FormaPagamentoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -196,128 +209,98 @@ namespace Contratos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FormasPagamento", x => x.FormaPagamentoId);
+                    table.PrimaryKey("PK_FormaPagamento", x => x.FormaPagamentoId);
                     table.ForeignKey(
-                        name: "FK_FormasPagamento_Contratos_ContratoId",
+                        name: "FK_FormaPagamento_Contrato_ContratoId",
                         column: x => x.ContratoId,
-                        principalTable: "Contratos",
+                        principalTable: "Contrato",
                         principalColumn: "ContratoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contratantes_EmpresaId1",
-                table: "Contratantes",
-                column: "EmpresaId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Contratantes_EnderecoId1",
-                table: "Contratantes",
-                column: "EnderecoId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Contratos_ContratanteId",
-                table: "Contratos",
-                column: "ContratanteId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Contratos_ContratanteId1",
-                table: "Contratos",
-                column: "ContratanteId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Contratos_EmpresaId",
-                table: "Contratos",
+                name: "IX_Contratante_EmpresaId",
+                table: "Contratante",
                 column: "EmpresaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contratos_TenantId",
-                table: "Contratos",
+                name: "IX_Contratante_EnderecoId",
+                table: "Contratante",
+                column: "EnderecoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contrato_ContratanteId",
+                table: "Contrato",
+                column: "ContratanteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contrato_EmpresaId",
+                table: "Contrato",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contrato_TenantId",
+                table: "Contrato",
                 column: "TenantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empresas_EnderecoId",
-                table: "Empresas",
+                name: "IX_Empresa_EnderecoId",
+                table: "Empresa",
                 column: "EnderecoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empresas_TenantId",
-                table: "Empresas",
+                name: "IX_Empresa_TenantId",
+                table: "Empresa",
                 column: "TenantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empresas_UsuarioId",
-                table: "Empresas",
+                name: "IX_Empresa_UsuarioId",
+                table: "Empresa",
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FormasPagamento_ContratoId",
-                table: "FormasPagamento",
+                name: "IX_FormaPagamento_ContratoId",
+                table: "FormaPagamento",
                 column: "ContratoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_TenantId",
-                table: "Usuarios",
-                column: "TenantId");
+                name: "IX_RefreshToken_UsuarioId",
+                table: "RefreshToken",
+                column: "UsuarioId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Contratos_FormasPagamento_ContratanteId",
-                table: "Contratos",
-                column: "ContratanteId",
-                principalTable: "FormasPagamento",
-                principalColumn: "FormaPagamentoId",
-                onDelete: ReferentialAction.Restrict);
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuario_TenantId",
+                table: "Usuario",
+                column: "TenantId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratantes_Empresas_EmpresaId1",
-                table: "Contratantes");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratos_Empresas_EmpresaId",
-                table: "Contratos");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratantes_Enderecos_EnderecoId1",
-                table: "Contratantes");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratos_Contratantes_ContratanteId",
-                table: "Contratos");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratos_Contratantes_ContratanteId1",
-                table: "Contratos");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contratos_FormasPagamento_ContratanteId",
-                table: "Contratos");
+            migrationBuilder.DropTable(
+                name: "FormaPagamento");
 
             migrationBuilder.DropTable(
-                name: "Empresas");
+                name: "RefreshToken");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Contrato");
 
             migrationBuilder.DropTable(
-                name: "Enderecos");
+                name: "Contratante");
 
             migrationBuilder.DropTable(
-                name: "Contratantes");
+                name: "Empresa");
 
             migrationBuilder.DropTable(
-                name: "FormasPagamento");
+                name: "Endereco");
 
             migrationBuilder.DropTable(
-                name: "Contratos");
+                name: "Usuario");
 
             migrationBuilder.DropTable(
-                name: "Tenants");
+                name: "Tenant");
         }
     }
 }

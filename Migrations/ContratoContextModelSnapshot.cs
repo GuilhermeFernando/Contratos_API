@@ -32,16 +32,10 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("EmpresaId1")
+                    b.Property<Guid>("EmpresaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("EnderecoId1")
+                    b.Property<Guid>("EnderecoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NomeFantasia")
@@ -54,9 +48,9 @@ namespace Contratos.Migrations
 
                     b.HasKey("ContratanteId");
 
-                    b.HasIndex("EmpresaId1");
+                    b.HasIndex("EmpresaId");
 
-                    b.HasIndex("EnderecoId1");
+                    b.HasIndex("EnderecoId");
 
                     b.ToTable("Contratante");
                 });
@@ -68,9 +62,6 @@ namespace Contratos.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ContratanteId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ContratanteId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
@@ -96,10 +87,7 @@ namespace Contratos.Migrations
 
                     b.HasKey("ContratoId");
 
-                    b.HasIndex("ContratanteId")
-                        .IsUnique();
-
-                    b.HasIndex("ContratanteId1");
+                    b.HasIndex("ContratanteId");
 
                     b.HasIndex("EmpresaId");
 
@@ -237,6 +225,35 @@ namespace Contratos.Migrations
                     b.ToTable("FormaPagamento");
                 });
 
+            modelBuilder.Entity("Contratos.Model.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Expirantion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("RefreshToken");
+                });
+
             modelBuilder.Entity("Contratos.Model.Tenant", b =>
                 {
                     b.Property<Guid>("TenantId")
@@ -307,13 +324,13 @@ namespace Contratos.Migrations
                 {
                     b.HasOne("Contratos.Model.Empresa", "Empresa")
                         .WithMany()
-                        .HasForeignKey("EmpresaId1")
+                        .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Contratos.Model.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoId1")
+                        .HasForeignKey("EnderecoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -324,22 +341,10 @@ namespace Contratos.Migrations
 
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
                 {
-                    b.HasOne("Contratos.Model.Contratante", null)
-                        .WithOne()
-                        .HasForeignKey("Contratos.Model.Contrato", "ContratanteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Contratos.Model.FormaPagamento", null)
-                        .WithOne()
-                        .HasForeignKey("Contratos.Model.Contrato", "ContratanteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Contratos.Model.Contratante", "Contratante")
                         .WithMany()
-                        .HasForeignKey("ContratanteId1")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("ContratanteId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Contratos.Model.Empresa", "Empresa")
@@ -399,6 +404,17 @@ namespace Contratos.Migrations
                     b.Navigation("Contrato");
                 });
 
+            modelBuilder.Entity("Contratos.Model.RefreshToken", b =>
+                {
+                    b.HasOne("Contratos.Model.Usuario", "Usuario")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Contratos.Model.Usuario", b =>
                 {
                     b.HasOne("Contratos.Model.Tenant", "Tenant")
@@ -413,6 +429,11 @@ namespace Contratos.Migrations
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
                 {
                     b.Navigation("FormasPagamento");
+                });
+
+            modelBuilder.Entity("Contratos.Model.Usuario", b =>
+                {
+                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

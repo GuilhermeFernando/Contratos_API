@@ -64,9 +64,29 @@ public class UsuarioController : ControllerBase
         var resultadoVerificacao = _passwordHasher.VerifyHashedPassword(usuario, usuario.Senha, loginDto.Senha);
         if (resultadoVerificacao == PasswordVerificationResult.Failed)
             return Unauthorized("Credenciais inválidas.");
+        
+        var (acessToken, acessTokenExpiration) = _jwtService.GenerateToken(usuario);
 
-        var (token, expiration) = _jwtService.GenerateToken(usuario);
-        return Ok(new TokenDto { Token = token, Expiration = expiration });
+        var(refreshToken, refreshTokenExpiration) = _jwtService.GenerateRefreshToken();
+
+        var refreshTokenEntity = new RefreshToken
+        {
+           UsuarioId = usuario.UsuarioId,
+           Token = refreshToken,
+           Expirantion = refreshTokenExpiration
+        };
+
+        _context.RefreshToken.Add(refreshTokenEntity);
+        await _context.SaveChangesAsync();
+
+        return Ok(new TokenResponseDto
+        {
+            AccessToken = acessToken,
+            RefreshToken = refreshToken,
+            AccessTokenExpiration = acessTokenExpiration,
+            RefreshTokenExpiration = refreshTokenExpiration
+        });
+       
     }
 
 
@@ -115,5 +135,58 @@ public class UsuarioController : ControllerBase
         _context.Usuario.Remove(usuario);
         await _context.SaveChangesAsync();
         return NoContent();
+    }
+
+    [HttpPost("refresh-token")]
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto request)
+    {
+        if (string.IsNullOrWhiteSpace(request.RefreshToken))
+            return Unauthorized("Refresh token é obrigatório.");
+
+        try
+        {
+            var storedRefreshToken = await _context.RefreshToken
+                .Include(rt => rt.Usuario)
+                .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
+
+            if (storedRefreshToken == null || storedRefreshToken.IsRevoked)
+                return Unauthorized("Refresh token inválido ou revogado.");
+
+            if (storedRefreshToken.Expirantion < DateTime.UtcNow)
+                return Unauthorized("Refresh token expirado.");
+
+            var (newAccessToken, newAccessTokenExpiration) = 
+                _jwtService.GenerateAccessToken(storedRefreshToken.Usuario!);
+
+            var (newRefreshToken, newRefreshTokenExpiration) = 
+                _jwtService.GenerateRefreshToken();
+
+            storedRefreshToken.IsRevoked = true;
+
+            var newRefreshTokenEntity = new RefreshToken
+            {
+                UsuarioId = storedRefreshToken.UsuarioId,
+                Token = newRefreshToken,
+                Expirantion = newRefreshTokenExpiration
+            };
+
+            _context.RefreshToken.Add(newRefreshTokenEntity);
+            await _context.SaveChangesAsync();
+
+            return Ok(new TokenResponseDto
+            {
+                AccessToken = newAccessToken,
+                RefreshToken = newRefreshToken,
+                AccessTokenExpiration = newAccessTokenExpiration,
+                RefreshTokenExpiration = newRefreshTokenExpiration
+            });
+        }
+        catch
+        {
+            return Unauthorized("Erro ao processar refresh token.");
+        }
     }
 }
