@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Contratos.Interface;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Contrato
+public class Contrato : ITenantEntity
 {
     [Key]
     public required Guid ContratoId { get; set; } 

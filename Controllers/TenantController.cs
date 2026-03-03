@@ -23,6 +23,7 @@ public class TenantController : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CadastroTenant([FromBody] TenantDto tenantDto)
@@ -33,7 +34,7 @@ public class TenantController : ControllerBase
         return CreatedAtAction(nameof(RecuperaTenantId), new { id = tenant.TenantId }, tenant);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}")]    
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AtualizaTenant(Guid id, [FromBody] TenantDto updateTenantDto)

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Endereco
+public class Endereco : ITenantEntity
 {
     [Key]
     public required Guid EnderecoId { get; set; }
@@ -14,5 +15,6 @@ public class Endereco
     public required string Estado { get; set; }
     public required string Pais { get; set; }
     public required string Complemento { get; set; }
-    
+    public required Guid TenantId { get; set; }
+
 }

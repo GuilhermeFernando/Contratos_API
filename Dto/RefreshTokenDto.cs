@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Dto
 {
@@ -6,5 +7,6 @@ namespace Contratos.Dto
     {
         [Required]
         public string RefreshToken { get; set; } = string.Empty;
+
     }
 }

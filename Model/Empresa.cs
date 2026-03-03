@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Empresa
+public class Empresa : ITenantEntity
 {
     [Key]   
     public required Guid EmpresaId { get; set; }

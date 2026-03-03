@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contratos.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Tenant
+public class Tenant : ITenantEntity
 {
     [Key]
     public required Guid TenantId { get; set; }

@@ -73,7 +73,8 @@ public class UsuarioController : ControllerBase
         {
            UsuarioId = usuario.UsuarioId,
            Token = refreshToken,
-           Expirantion = refreshTokenExpiration
+           Expiration = refreshTokenExpiration,
+           TenantId = usuario.TenantId, 
         };
 
         _context.RefreshToken.Add(refreshTokenEntity);
@@ -85,6 +86,7 @@ public class UsuarioController : ControllerBase
             RefreshToken = refreshToken,
             AccessTokenExpiration = acessTokenExpiration,
             RefreshTokenExpiration = refreshTokenExpiration
+
         });
        
     }
@@ -149,13 +151,14 @@ public class UsuarioController : ControllerBase
         try
         {
             var storedRefreshToken = await _context.RefreshToken
+                .IgnoreQueryFilters()
                 .Include(rt => rt.Usuario)
                 .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
 
             if (storedRefreshToken == null || storedRefreshToken.IsRevoked)
                 return Unauthorized("Refresh token inválido ou revogado.");
 
-            if (storedRefreshToken.Expirantion < DateTime.UtcNow)
+            if (storedRefreshToken.Expiration < DateTime.UtcNow)
                 return Unauthorized("Refresh token expirado.");
 
             var (newAccessToken, newAccessTokenExpiration) = 
@@ -170,7 +173,8 @@ public class UsuarioController : ControllerBase
             {
                 UsuarioId = storedRefreshToken.UsuarioId,
                 Token = newRefreshToken,
-                Expirantion = newRefreshTokenExpiration
+                Expiration = newRefreshTokenExpiration,
+                TenantId = storedRefreshToken.TenantId,
             };
 
             _context.RefreshToken.Add(newRefreshTokenEntity);

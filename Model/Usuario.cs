@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Contratos.Interface;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Usuario
+public class Usuario : ITenantEntity
 {
     [Key]
     public required Guid UsuarioId { get; set; }
@@ -13,5 +14,5 @@ public class Usuario
     public  string Telefone { get; set; } = string.Empty;
     public required Guid TenantId { get; set; }
     public required Tenant Tenant { get; set; }
-    public ICollection<RefreshToken> RefreshTokens { get; set; }
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 }

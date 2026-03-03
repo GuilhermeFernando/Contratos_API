@@ -1088,6 +1088,37 @@
   },
   {
     "ContainingType": "Contratos.Controllers.UsuarioController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Usuario/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Contratos.Dto.RefreshTokenDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "Contratos.Controllers.UsuarioController",
     "Method": "CadastroUsuario",
     "RelativePath": "api/Usuario/registrar",
     "HttpMethod": "POST",

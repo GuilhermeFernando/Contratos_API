@@ -1,13 +1,16 @@
-﻿namespace Contratos.Model
+﻿using Contratos.Interface;
+
+namespace Contratos.Model
 {
-    public class RefreshToken
+    public class RefreshToken : ITenantEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid  UsuarioId { get; set; }
         public string  Token { get; set; } = string.Empty;
-        public DateTime Expirantion { get; set; }
+        public DateTime Expiration { get; set; }
         public bool IsRevoked { get; set; } = false;
-        public DateTime CreateAt { get; set; } = DateTime.UtcNow;
+        public required Guid TenantId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public Usuario? Usuario { get; set; }
 
     }

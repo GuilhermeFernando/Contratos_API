@@ -20,7 +20,7 @@ public class JwtServices : IJwtService
     public (string Token, DateTime Expiration) GenerateToken(Usuario usuario)
     {
         var jwtSection = _configuration.GetSection("Jwt");
-        var key = jwtSection.GetValue<string>("Key") ?? throw new InvalidOperationException("JWT Key is not configured.");
+        var key = jwtSection.GetValue<string>("SecretKey") ?? throw new InvalidOperationException("JWT Key is not configured.");
         var issuer = jwtSection.GetValue<string>("Issuer") ?? throw new InvalidOperationException("JWT Issuer is not configured.");
         var audience = jwtSection.GetValue<string>("Audience") ?? throw new InvalidOperationException("JWT Audience is not configured.");
         var expirationMinutes = jwtSection.GetValue<int>("ExpirationMinutes");
@@ -52,7 +52,8 @@ public class JwtServices : IJwtService
 
     public (string Acesstoken, DateTime AcessTokenExpiration) GenerateAccessToken(Usuario usuario)
     {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var key = _configuration["Jwt:SecretKey"] ?? throw new InvalidOperationException("JWT não configurado.");
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var expiration = DateTime.UtcNow.AddMinutes(15);
 
@@ -61,6 +62,7 @@ public class JwtServices : IJwtService
             new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()),
             new Claim(ClaimTypes.Name, usuario.NomeUsuario),
             new Claim(ClaimTypes.Email, usuario.Email ?? ""),
+            new Claim("TenantId", usuario.TenantId.ToString())
         };
 
         var token = new JwtSecurityToken(
