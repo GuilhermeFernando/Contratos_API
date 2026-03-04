@@ -10,9 +10,6 @@ public class EmpresaDto
    
     [Required(ErrorMessage = "O ID do usuário é obrigatório.")]
     public Guid UsuarioId { get; set; }
-
-    [Required(ErrorMessage = "O ID do tenant é obrigatório.")]
-    public Guid TenantId { get; set; }
     [Required(ErrorMessage = "A razão social é obrigatória.")]
     public string RazaoSocial { get; set; } = string.Empty;
     [Required(ErrorMessage = "O CNPJ é obrigatório.")]

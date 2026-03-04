@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contratos.Migrations
 {
     [DbContext(typeof(ContratoContext))]
-    [Migration("20260303183838_ImplementandoMultiTenant")]
-    partial class ImplementandoMultiTenant
+    [Migration("20260304174342_RemovendoTenantIdUsuarioeEmpresa")]
+    partial class RemovendoTenantIdUsuarioeEmpresa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,17 +49,12 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ContratanteId");
 
                     b.HasIndex("EmpresaId");
 
                     b.HasIndex("EnderecoId")
                         .IsUnique();
-
-                    b.HasIndex("TenantId");
 
                     b.ToTable("Contratante");
                 });
@@ -85,9 +80,6 @@ namespace Contratos.Migrations
                     b.Property<string>("Objeto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 
@@ -99,8 +91,6 @@ namespace Contratos.Migrations
                     b.HasIndex("ContratanteId");
 
                     b.HasIndex("EmpresaId");
-
-                    b.HasIndex("TenantId");
 
                     b.ToTable("Contrato");
                 });
@@ -141,9 +131,6 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
@@ -151,8 +138,6 @@ namespace Contratos.Migrations
 
                     b.HasIndex("EnderecoId")
                         .IsUnique();
-
-                    b.HasIndex("TenantId");
 
                     b.HasIndex("UsuarioId");
 
@@ -197,9 +182,6 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("EnderecoId");
 
                     b.ToTable("Endereco");
@@ -230,9 +212,6 @@ namespace Contratos.Migrations
                     b.Property<int>("NumeroParcela")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("FormaPagamentoId");
 
                     b.HasIndex("ContratoId");
@@ -255,9 +234,6 @@ namespace Contratos.Migrations
                     b.Property<bool>("IsRevoked")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Token")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,40 +246,6 @@ namespace Contratos.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("RefreshToken");
-                });
-
-            modelBuilder.Entity("Contratos.Model.Tenant", b =>
-                {
-                    b.Property<Guid>("TenantId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Ddd")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlLogo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TenantId");
-
-                    b.ToTable("Tenant");
                 });
 
             modelBuilder.Entity("Contratos.Model.Usuario", b =>
@@ -328,12 +270,7 @@ namespace Contratos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("UsuarioId");
-
-                    b.HasIndex("TenantId");
 
                     b.ToTable("Usuario");
                 });
@@ -352,17 +289,9 @@ namespace Contratos.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Contratos.Model.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Empresa");
 
                     b.Navigation("Endereco");
-
-                    b.Navigation("Tenant");
                 });
 
             modelBuilder.Entity("Contratos.Model.Contrato", b =>
@@ -379,17 +308,9 @@ namespace Contratos.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Contratos.Model.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Contratante");
 
                     b.Navigation("Empresa");
-
-                    b.Navigation("Tenant");
                 });
 
             modelBuilder.Entity("Contratos.Model.Empresa", b =>
@@ -400,12 +321,6 @@ namespace Contratos.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Contratos.Model.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Contratos.Model.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
@@ -413,8 +328,6 @@ namespace Contratos.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
-
-                    b.Navigation("Tenant");
 
                     b.Navigation("Usuario");
                 });
@@ -435,21 +348,10 @@ namespace Contratos.Migrations
                     b.HasOne("Contratos.Model.Usuario", "Usuario")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("Contratos.Model.Usuario", b =>
-                {
-                    b.HasOne("Contratos.Model.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Tenant");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Contratos.Model.Contrato", b =>

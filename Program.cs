@@ -54,7 +54,6 @@ builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 builder.Services.AddScoped<IJwtService, JwtServices>();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ITenantServices, TenantService>();
 
 //Ler config JWT
 var jwtSection = builder.Configuration.GetSection("Jwt");

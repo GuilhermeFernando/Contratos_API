@@ -1,9 +1,9 @@
-﻿using Contratos.Interface;
+﻿// using Contratos.Interface;
 using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class Empresa : ITenantEntity
+public class Empresa
 {
     [Key]   
     public required Guid EmpresaId { get; set; }
@@ -12,13 +12,7 @@ public class Empresa : ITenantEntity
     public required Endereco Endereco { get; set; }   
     public required Guid UsuarioId { get; set; }   
     public required Usuario Usuario { get; set; }
-
-    public required Guid TenantId { get; set; }
-  
-    public required Tenant Tenant { get; set; }
-
-    public required string RazaoSocial { get; set; }
-    
+    public required string RazaoSocial { get; set; }    
     public required string CNPJ { get; set; }
     public required string NomeFantasia { get; set; }
     public required string IE { get; set; }

@@ -16,6 +16,5 @@ public class ContratanteDto
     [Required(ErrorMessage = "O documento é obrigatório.")]
     public string Documento { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "O ID do tenant é obrigatório.")]
-    public Guid TenantId { get; set; } 
+    // TenantId removed
 }

@@ -1,9 +1,9 @@
-﻿using Contratos.Interface;
+﻿// using Contratos.Interface;
 using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
-public class FormaPagamento : ITenantEntity
+public class FormaPagamento
 {
     [Key]
     public required Guid FormaPagamentoId { get; set; } 
@@ -14,7 +14,7 @@ public class FormaPagamento : ITenantEntity
     public required DateTime DataAlteracao { get; set; }
     public required Guid ContratoId { get; set; }
     public Contrato? Contrato { get; set; }
-    public required Guid TenantId { get; set; }
+    // TenantId removed
 
 
 }

@@ -6,18 +6,15 @@ namespace Contratos.Data;
 
 public class ContratoContext : DbContext
 {
-    private readonly ITenantServices? _tenantServices;
-
-    public ContratoContext(DbContextOptions<ContratoContext> opt, ITenantServices? tenantServices = null)
+    // Tenant logic removed
+    public ContratoContext(DbContextOptions<ContratoContext> opt)
         : base(opt)
     {
-        _tenantServices = tenantServices;
     }
 
     public DbSet<Empresa> Empresa { get; set; }
     public DbSet<Endereco> Endereco { get; set; }
     public DbSet<Usuario> Usuario { get; set; }
-    public DbSet<Tenant> Tenant { get; set; }
     public DbSet<Contratante> Contratante { get; set; }
     public DbSet<Contrato> Contrato { get; set; }
     public DbSet<FormaPagamento> FormaPagamento { get; set; }
@@ -54,62 +51,13 @@ public class ContratoContext : DbContext
             .HasMany(u => u.RefreshTokens)
             .WithOne(rt => rt.Usuario)
             .HasForeignKey(rt => rt.UsuarioId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Contratante>()
             .HasOne(c => c.Endereco)
             .WithOne()
             .HasForeignKey<Contratante>(c => c.EnderecoId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        // Relacionamentos com Tenant
-        modelBuilder.Entity<Empresa>()
-            .HasOne(e => e.Tenant)
-            .WithMany()
-            .HasForeignKey(e => e.TenantId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Contrato>()
-            .HasOne(c => c.Tenant)
-            .WithMany()
-            .HasForeignKey(c => c.TenantId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Contratante>()
-            .HasOne(c => c.Tenant)
-            .WithMany()
-            .HasForeignKey(c => c.TenantId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        // Query Filters para Multi-Tenancy
-        modelBuilder.Entity<Usuario>()
-            .HasQueryFilter(u => _tenantServices == null ||
-                                 !_tenantServices.HasTenant() ||
-                                 u.TenantId == _tenantServices.GetCurrentTenantId());
-
-        modelBuilder.Entity<Empresa>()
-            .HasQueryFilter(e => _tenantServices == null ||
-                                 !_tenantServices.HasTenant() ||
-                                 e.TenantId == _tenantServices.GetCurrentTenantId());
-
-        modelBuilder.Entity<Contrato>()
-            .HasQueryFilter(c => _tenantServices == null ||
-                                 !_tenantServices.HasTenant() ||
-                                 c.TenantId == _tenantServices.GetCurrentTenantId());
-
-        modelBuilder.Entity<Contratante>()
-            .HasQueryFilter(ct => _tenantServices == null ||
-                                  !_tenantServices.HasTenant() ||
-                                  ct.TenantId == _tenantServices.GetCurrentTenantId());
-        modelBuilder.Entity<RefreshToken>()
-            .HasQueryFilter(rt => _tenantServices == null ||
-                                  !_tenantServices.HasTenant() ||
-                                  rt.TenantId == _tenantServices.GetCurrentTenantId());
-
-        modelBuilder.Entity<FormaPagamento>()
-            .HasQueryFilter(fp => _tenantServices == null ||
-                                  !_tenantServices.HasTenant() ||
-                                  fp.TenantId == _tenantServices.GetCurrentTenantId());
 
         base.OnModelCreating(modelBuilder);
     }

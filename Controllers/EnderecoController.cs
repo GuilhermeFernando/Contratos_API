@@ -63,7 +63,16 @@ public class EnderecoController : ControllerBase
     {
         var end = await _context.Endereco.FirstOrDefaultAsync(endereco => endereco.EnderecoId == id);
         if (end == null) return NotFound();
-        _mapper.Map(updateEnderecoDto, end);
+
+        end.CEP = updateEnderecoDto.CEP;
+        end.Logradouro = updateEnderecoDto.Logradouro;
+        end.Numero = updateEnderecoDto.Numero;
+        end.Bairro = updateEnderecoDto.Bairro;
+        end.Cidade = updateEnderecoDto.Cidade;
+        end.Estado = updateEnderecoDto.Estado;
+        end.Pais = updateEnderecoDto.Pais;
+        end.Complemento = updateEnderecoDto.Complemento;
+
         await _context.SaveChangesAsync();
         return NoContent();
     }

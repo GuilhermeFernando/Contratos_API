@@ -73,8 +73,7 @@ public class UsuarioController : ControllerBase
         {
            UsuarioId = usuario.UsuarioId,
            Token = refreshToken,
-           Expiration = refreshTokenExpiration,
-           TenantId = usuario.TenantId, 
+           Expiration = refreshTokenExpiration
         };
 
         _context.RefreshToken.Add(refreshTokenEntity);
@@ -100,7 +99,16 @@ public class UsuarioController : ControllerBase
     {
         var usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.UsuarioId == id);
         if (usuario == null) return NotFound();
-        _mapper.Map(updateUsuarioDto, usuario);
+        usuario.NomeUsuario = updateUsuarioDto.NomeUsuario;
+        usuario.Email = updateUsuarioDto.Email;
+        usuario.Telefone = updateUsuarioDto.Telefone;
+
+        if (!string.IsNullOrWhiteSpace(updateUsuarioDto.Senha))
+        {
+            usuario.Senha = _passwordHasher.HashPassword(usuario, updateUsuarioDto.Senha);
+        }
+
+
         await _context.SaveChangesAsync();
         return NoContent();
     }
@@ -173,8 +181,7 @@ public class UsuarioController : ControllerBase
             {
                 UsuarioId = storedRefreshToken.UsuarioId,
                 Token = newRefreshToken,
-                Expiration = newRefreshTokenExpiration,
-                TenantId = storedRefreshToken.TenantId,
+                Expiration = newRefreshTokenExpiration
             };
 
             _context.RefreshToken.Add(newRefreshTokenEntity);

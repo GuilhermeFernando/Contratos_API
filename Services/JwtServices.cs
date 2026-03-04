@@ -29,8 +29,7 @@ public class JwtServices : IJwtService
         {
             new Claim(JwtRegisteredClaimNames.Sub, usuario.UsuarioId.ToString()),
             new Claim(JwtRegisteredClaimNames.UniqueName, usuario.NomeUsuario),
-            new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-            new Claim("TenantId", usuario.TenantId.ToString())
+            new Claim(JwtRegisteredClaimNames.Email, usuario.Email)
         };
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
@@ -61,8 +60,7 @@ public class JwtServices : IJwtService
         {
             new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()),
             new Claim(ClaimTypes.Name, usuario.NomeUsuario),
-            new Claim(ClaimTypes.Email, usuario.Email ?? ""),
-            new Claim("TenantId", usuario.TenantId.ToString())
+            new Claim(ClaimTypes.Email, usuario.Email ?? "")
         };
 
         var token = new JwtSecurityToken(
@@ -90,7 +88,7 @@ public class JwtServices : IJwtService
 
     public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
     {
-        var secretKey = _configuration["Jwt:SecretKey"];
+        var secretKey = _configuration["Jwt:SecretKey"] = string.Empty;
         var tokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false,

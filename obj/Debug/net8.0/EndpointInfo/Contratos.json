@@ -1153,237 +1153,6 @@
         }
       }
     },
-    "/api/Tenant": {
-      "post": {
-        "tags": [
-          "Tenant"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Tenant"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TenantDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TenantDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TenantDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Tenant/{id}": {
-      "put": {
-        "tags": [
-          "Tenant"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Tenant"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Tenant"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Usuario/registrar": {
       "post": {
         "tags": [
@@ -1696,58 +1465,10 @@
   },
   "components": {
     "schemas": {
-      "Contratante": {
-        "required": [
-          "contratanteId",
-          "documento",
-          "empresa",
-          "empresaId",
-          "endereco",
-          "enderecoId",
-          "nomeFantasia",
-          "razaoSocial"
-        ],
-        "type": "object",
-        "properties": {
-          "contratanteId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "empresaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "empresa": {
-            "$ref": "#/components/schemas/Empresa"
-          },
-          "razaoSocial": {
-            "type": "string",
-            "nullable": true
-          },
-          "enderecoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "endereco": {
-            "$ref": "#/components/schemas/Endereco"
-          },
-          "nomeFantasia": {
-            "type": "string",
-            "nullable": true
-          },
-          "documento": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "ContratanteDto": {
         "required": [
           "documento",
-          "empresa",
           "empresaId",
-          "endereco",
           "enderecoId",
           "nomeFantasia",
           "razaoSocial"
@@ -1758,9 +1479,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "empresa": {
-            "$ref": "#/components/schemas/Empresa"
-          },
           "razaoSocial": {
             "minLength": 1,
             "type": "string"
@@ -1769,9 +1487,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "endereco": {
-            "$ref": "#/components/schemas/Endereco"
-          },
           "nomeFantasia": {
             "minLength": 1,
             "type": "string"
@@ -1779,73 +1494,6 @@
           "documento": {
             "minLength": 1,
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Contrato": {
-        "required": [
-          "contratante",
-          "contratanteId",
-          "contratoId",
-          "empresa",
-          "empresaId",
-          "tenant",
-          "tenantId"
-        ],
-        "type": "object",
-        "properties": {
-          "contratoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "empresaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "empresa": {
-            "$ref": "#/components/schemas/Empresa"
-          },
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenant": {
-            "$ref": "#/components/schemas/Tenant"
-          },
-          "contratanteId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "contratante": {
-            "$ref": "#/components/schemas/Contratante"
-          },
-          "titulo": {
-            "type": "string",
-            "nullable": true
-          },
-          "objeto": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataInicio": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dataFim": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "valor": {
-            "type": "number",
-            "format": "double"
-          },
-          "formasPagamento": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FormaPagamento"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1856,16 +1504,11 @@
           "dataInicio",
           "empresaId",
           "objeto",
-          "tenantId",
           "titulo"
         ],
         "type": "object",
         "properties": {
           "empresaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenantId": {
             "type": "string",
             "format": "uuid"
           },
@@ -1903,81 +1546,6 @@
         },
         "additionalProperties": false
       },
-      "Empresa": {
-        "required": [
-          "cnpj",
-          "dataAbertura",
-          "empresaId",
-          "endereco",
-          "enderecoId",
-          "ie",
-          "im",
-          "naturezaJuridica",
-          "nomeFantasia",
-          "razaoSocial",
-          "tenant",
-          "tenantId",
-          "usuario",
-          "usuarioId"
-        ],
-        "type": "object",
-        "properties": {
-          "empresaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "enderecoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "endereco": {
-            "$ref": "#/components/schemas/Endereco"
-          },
-          "usuarioId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "usuario": {
-            "$ref": "#/components/schemas/Usuario"
-          },
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenant": {
-            "$ref": "#/components/schemas/Tenant"
-          },
-          "razaoSocial": {
-            "type": "string",
-            "nullable": true
-          },
-          "cnpj": {
-            "type": "string",
-            "nullable": true
-          },
-          "nomeFantasia": {
-            "type": "string",
-            "nullable": true
-          },
-          "ie": {
-            "type": "string",
-            "nullable": true
-          },
-          "im": {
-            "type": "string",
-            "nullable": true
-          },
-          "naturezaJuridica": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataAbertura": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
       "EmpresaDto": {
         "required": [
           "cnpj",
@@ -1985,7 +1553,6 @@
           "ie",
           "nomeFantasia",
           "razaoSocial",
-          "tenantId",
           "usuarioId"
         ],
         "type": "object",
@@ -1995,10 +1562,6 @@
             "format": "uuid"
           },
           "usuarioId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenantId": {
             "type": "string",
             "format": "uuid"
           },
@@ -2074,59 +1637,6 @@
         },
         "additionalProperties": false
       },
-      "Endereco": {
-        "required": [
-          "bairro",
-          "cep",
-          "cidade",
-          "complemento",
-          "enderecoId",
-          "estado",
-          "logradouro",
-          "numero",
-          "pais"
-        ],
-        "type": "object",
-        "properties": {
-          "enderecoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "cep": {
-            "type": "string",
-            "nullable": true
-          },
-          "logradouro": {
-            "type": "string",
-            "nullable": true
-          },
-          "numero": {
-            "type": "string",
-            "nullable": true
-          },
-          "bairro": {
-            "type": "string",
-            "nullable": true
-          },
-          "cidade": {
-            "type": "string",
-            "nullable": true
-          },
-          "estado": {
-            "type": "string",
-            "nullable": true
-          },
-          "pais": {
-            "type": "string",
-            "nullable": true
-          },
-          "complemento": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EnderecoDto": {
         "required": [
           "bairro",
@@ -2182,54 +1692,10 @@
         },
         "additionalProperties": false
       },
-      "FormaPagamento": {
-        "required": [
-          "ativo",
-          "contratoId",
-          "dataAlteracao",
-          "dataCriacao",
-          "descricao",
-          "formaPagamentoId",
-          "numeroParcela"
-        ],
-        "type": "object",
-        "properties": {
-          "formaPagamentoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "descricao": {
-            "type": "string",
-            "nullable": true
-          },
-          "numeroParcela": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ativo": {
-            "type": "boolean"
-          },
-          "dataCriacao": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dataAlteracao": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "contratoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "contrato": {
-            "$ref": "#/components/schemas/Contrato"
-          }
-        },
-        "additionalProperties": false
-      },
       "FormaPagamentoDto": {
         "required": [
           "ativo",
+          "contratoId",
           "dataAlteracao",
           "dataCriacao",
           "descricao",
@@ -2262,11 +1728,8 @@
             "format": "date-time"
           },
           "contratoId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "contrato": {
-            "$ref": "#/components/schemas/Contrato"
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -2334,38 +1797,6 @@
         },
         "additionalProperties": { }
       },
-      "RefreshToken": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "usuarioId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "token": {
-            "type": "string",
-            "nullable": true
-          },
-          "expiration": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isRevoked": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "usuario": {
-            "$ref": "#/components/schemas/Usuario"
-          }
-        },
-        "additionalProperties": false
-      },
       "RefreshTokenDto": {
         "required": [
           "refreshToken"
@@ -2375,135 +1806,6 @@
           "refreshToken": {
             "minLength": 1,
             "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Tenant": {
-        "required": [
-          "dataCriacao",
-          "ddd",
-          "email",
-          "nome",
-          "telefone",
-          "tenantId",
-          "urlLogo"
-        ],
-        "type": "object",
-        "properties": {
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nome": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataCriacao": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "ddd": {
-            "type": "string",
-            "nullable": true
-          },
-          "telefone": {
-            "type": "string",
-            "nullable": true
-          },
-          "urlLogo": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantDto": {
-        "required": [
-          "dataCriacao",
-          "nome",
-          "tenantId"
-        ],
-        "type": "object",
-        "properties": {
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nome": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "dataCriacao": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "ddd": {
-            "type": "string",
-            "nullable": true
-          },
-          "telefone": {
-            "type": "string",
-            "nullable": true
-          },
-          "urlLogo": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Usuario": {
-        "required": [
-          "nomeUsuario",
-          "senha",
-          "tenant",
-          "tenantId",
-          "usuarioId"
-        ],
-        "type": "object",
-        "properties": {
-          "usuarioId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nomeUsuario": {
-            "type": "string",
-            "nullable": true
-          },
-          "senha": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "telefone": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenant": {
-            "$ref": "#/components/schemas/Tenant"
-          },
-          "refreshTokens": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RefreshToken"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2534,10 +1836,6 @@
           "telefone": {
             "type": "string",
             "nullable": true
-          },
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false

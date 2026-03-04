@@ -8,8 +8,7 @@ public class ContratoDto
     [Required(ErrorMessage = "O ID da empresa é obrigatório.")]
     public Guid EmpresaId { get; set; }
   
-    [Required(ErrorMessage = "O tenant é obrigatório.")]   
-    public Guid TenantId { get; set; }
+    // TenantId removed
 
     [Required(ErrorMessage = "O ID do contratante é obrigatório.")]
     public Guid ContratanteId { get; set; }

@@ -26,7 +26,6 @@ public class FormaPagamentoDto
     [Required(ErrorMessage = "O ID do contrato é obrigatório.")]
     public Guid ContratoId { get; set; }
     
-    [Required(ErrorMessage = "O ID do tenant é obrigatório.")]
-    public Guid TenantId { get; set; }
+    // TenantId removed
 
 }

@@ -13,6 +13,6 @@ public class UsuarioResponseDto
     [Required(ErrorMessage = "O telefone é obrigatório.")]
     public string Telefone { get; set; } = string.Empty;
     public string UrlLogo { get; set; } = string.Empty;
-    public Guid TenantId { get; set; }
+    // TenantId removed
   
 }
