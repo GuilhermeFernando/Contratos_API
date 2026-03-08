@@ -1,5 +1,4 @@
-﻿// using Contratos.Interface;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Contratos.Model;
 
